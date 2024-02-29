@@ -4,11 +4,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TODO List</title>
+    <title>TO-DO List</title>
 <script defer src="bundle.js"></script></head>
 
 <body>
-    <h1>TODO List</h1>
+    <header>
+        <form>
+            <p>
+                <button id="create-project" type="button">Create Project</button>
+                <button id="create-todo" type="button">Create TO-DO</button>
+            </p>
+            <p>
+                <label for="select-project">Select Project</label>
+                <select id="select-project" name="project">
+                    <option value="all">All Projects</option>
+                    <option selected value="default">Default</option>
+                    <option value="project1">Project 1</option>
+                </select>
+            </p>
+        </form>
+    </header>
 </body>
 
 </html>
