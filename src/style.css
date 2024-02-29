@@ -13,6 +13,8 @@
 body {
     padding: 0;
     margin: 0;
+    display: grid;
+    grid-template-rows: 1fr 7fr;
 }
 
 body>header>form:first-child {
@@ -22,7 +24,7 @@ body>header>form:first-child {
     align-items: center;
     justify-content: center;
     gap: 20px;
-    font-size: 1.2rem;
+    font-size: clamp(1.1rem, 5vw, 1.2rem);
 }
 
 #create-project,
@@ -50,4 +52,11 @@ body>header>form:first-child>p>select[name='project']:focus {
     color: rgb(0, 255, 255);
     cursor: pointer;
     margin-left: 0.5em;
+}
+
+.container {
+    background-color: rgba(190, 201, 223, 0.836);
+    margin: 0 1em;
+    border-radius: 20px;
+    border: 1px solid rgb(0 0 0/0.3);
 }
