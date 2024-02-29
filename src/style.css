@@ -18,18 +18,24 @@ body {
 }
 
 body>header>.toolbar {
-    display: grid;
+    /* display: grid;
     grid-template-columns: repeat(2, max-content);
     justify-items: center;
     align-items: center;
     justify-content: center;
-    gap: 20px;
+    gap: 20px; */
     font-size: clamp(1.1rem, 5vw, 1.2rem);
+    margin: 1em 0;
+    text-align: center;
+}
+
+body>header>.toolbar>span {
+    margin-left: 1em;
 }
 
 #create-project,
 #create-todo,
-body>header>.toolbar>p>select[name='project'] {
+body>header>.toolbar>span>select[name='project'] {
     font-size: inherit;
     padding: 0.5em 1em;
     background-color: rgb(222 184 135);
@@ -38,11 +44,11 @@ body>header>.toolbar>p>select[name='project'] {
     border-radius: 5px;
 }
 
-body>header>.toolbar>p>select[name='project'] {
+body>header>.toolbar>span>select[name='project'] {
     margin-left: 0.25em;
 }
 
-body>header>.toolbar>p>select[name='project']:focus {
+body>header>.toolbar>span>select[name='project']:focus {
     outline: 2px solid rgb(117 72 72);
 }
 
@@ -59,4 +65,8 @@ body>header>.toolbar>p>select[name='project']:focus {
     margin: 0 1em;
     border-radius: 20px;
     border: 1px solid rgb(0 0 0/0.3);
+}
+
+.toolbar>dialog {
+    position: absolute;
 }
