@@ -76,6 +76,8 @@ body>header>.toolbar>span>select[name='project']:focus {
     border: none;
     border-radius: 15px;
     width: clamp(320px, 25vw, 420px);
+    position: relative;
+    padding: 1rem;
 }
 
 .toolbar>span>dialog::backdrop {
@@ -99,7 +101,7 @@ dialog>form>.field>input {
 .create-project-form-buttons>button {
     border: none;
     color: rgb(0 255 255);
-    background-color: rgb(92, 68, 45);
+    background-color: rgb(116, 105, 95);
     padding: 0.3em 1em;
     box-shadow: 2px 2px 2px rgb(0 0 0 / 0.3);
 }
@@ -121,4 +123,27 @@ dialog>form * {
 .create-project-form-buttons {
     display: flex;
     justify-content: space-between;
+}
+
+dialog>form>button {
+    background-color: rgb(92, 68, 45);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    outline: none;
+    padding: 0.4em;
+    border: none;
+    box-shadow: 2px 2px 2px rgb(0 0 0 / 0.3);
+    border-radius: 100%;
+    position: absolute;
+    top: 0.7rem;
+    right: 0.7rem;
+    cursor: pointer;
+}
+
+dialog>form>button>svg {
+    background-color: inherit;
+    fill: rgb(0 255 255);
+    width: 1.1em;
+    height: 1.1em;
 }
