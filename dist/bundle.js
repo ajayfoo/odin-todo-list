@@ -116,7 +116,7 @@ eval("\n\n/* istanbul ignore next  */\nfunction styleTagTransform(css, styleElem
   \**********************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _style_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./style.css */ \"./src/style.css\");\n/* harmony import */ var _modalHandler__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modalHandler */ \"./src/modalHandler.js\");\n\n\n\n_modalHandler__WEBPACK_IMPORTED_MODULE_1__.setupEventListeners();\n\n//# sourceURL=webpack://top-todo-list/./src/index.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _style_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./style.css */ \"./src/style.css\");\n/* harmony import */ var _modalHandler__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modalHandler */ \"./src/modalHandler.js\");\n/* harmony import */ var _projectFormHandler__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./projectFormHandler */ \"./src/projectFormHandler.js\");\n\n\n\n\n_modalHandler__WEBPACK_IMPORTED_MODULE_1__.setupEventListeners();\n_projectFormHandler__WEBPACK_IMPORTED_MODULE_2__.setupEventListeners();\n\n//# sourceURL=webpack://top-todo-list/./src/index.js?");
 
 /***/ }),
 
@@ -126,7 +126,27 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _sty
   \*****************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   setupEventListeners: () => (/* binding */ setupEventListeners)\n/* harmony export */ });\n\nconst createProjectDialog = document.querySelector('#create-project+dialog');\nconst createTODODialog = document.querySelector('#create-todo+dialog');\nconst createProjectDialogBtn = document.querySelector('#create-project');\nconst createTODODialogBtn = document.querySelector('#create-todo');\nconst closeCreateProjectDialogBtn = document.querySelector('#create-project+dialog>form>.close-modal');\nconst closeCreateTODODialogBtn = document.querySelector('#create-todo+dialog>form>.close-modal');\n\nconst setupEventListeners = () => {\n    createProjectDialogBtn.addEventListener('click', () => {\n        createProjectDialog.showModal();\n    });\n    createTODODialogBtn.addEventListener('click', () => {\n        createTODODialog.showModal();\n    });\n    closeCreateProjectDialogBtn.addEventListener('click', () => {\n        createProjectDialog.close();\n    });\n    closeCreateTODODialogBtn.addEventListener('click', () => {\n        createTODODialog.close();\n    });\n}\n\n\n\n//# sourceURL=webpack://top-todo-list/./src/modalHandler.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   closeCreateProjectDialog: () => (/* binding */ closeCreateProjectDialog),\n/* harmony export */   closeCreateTODODialog: () => (/* binding */ closeCreateTODODialog),\n/* harmony export */   setupEventListeners: () => (/* binding */ setupEventListeners)\n/* harmony export */ });\n\nconst createProjectDialog = document.querySelector('#create-project+dialog');\nconst createTODODialog = document.querySelector('#create-todo+dialog');\nconst createProjectBtn = document.querySelector('#create-project');\nconst createTODOBtn = document.querySelector('#create-todo');\nconst closeCreateProjectDialogBtn = document.querySelector('#create-project+dialog>form>.close-modal');\nconst closeCreateTODODialogBtn = document.querySelector('#create-todo+dialog>form>.close-modal');\n\nconst closeCreateProjectDialog = () => {\n    createProjectDialog.close();\n};\n\nconst closeCreateTODODialog = () => {\n    createTODODialog.close();\n};\n\nconst setupEventListeners = () => {\n    createProjectBtn.addEventListener('click', () => {\n        createProjectDialog.showModal();\n    });\n    closeCreateProjectDialogBtn.addEventListener('click', closeCreateProjectDialog);\n\n    createTODOBtn.addEventListener('click', () => {\n        createTODODialog.showModal();\n    });\n    closeCreateTODODialogBtn.addEventListener('click', () => closeCreateTODODialog);\n};\n\n\n\n//# sourceURL=webpack://top-todo-list/./src/modalHandler.js?");
+
+/***/ }),
+
+/***/ "./src/projectFormHandler.js":
+/*!***********************************!*\
+  !*** ./src/projectFormHandler.js ***!
+  \***********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   setupEventListeners: () => (/* binding */ setupEventListeners)\n/* harmony export */ });\n/* harmony import */ var _projectHandler__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./projectHandler */ \"./src/projectHandler.js\");\n/* harmony import */ var _modalHandler__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modalHandler */ \"./src/modalHandler.js\");\n\n\n\nconst projectForm = document.querySelector('#create-project+dialog>form');\nconst createProjectBtn = projectForm.querySelector('.create-form-buttons>button:first-child');\nconst createProjectAndGoBtn = projectForm.querySelector('.create-form-buttons>button:last-child');\n\nconst setupEventListeners = () => {\n    const projectNameElement = projectForm.querySelector('#project-name');\n    createProjectBtn.addEventListener('click', () => {\n        _projectHandler__WEBPACK_IMPORTED_MODULE_0__.createProject(projectNameElement.value);\n        (0,_modalHandler__WEBPACK_IMPORTED_MODULE_1__.closeCreateProjectDialog)();\n        projectNameElement.value = '';\n    });\n    createProjectAndGoBtn.addEventListener('click', () => {\n        _projectHandler__WEBPACK_IMPORTED_MODULE_0__.createProject(projectNameElement.value);\n        (0,_modalHandler__WEBPACK_IMPORTED_MODULE_1__.closeCreateTODODialog)();\n        projectNameElement.value = '';\n    });\n};\n\n\n\n//# sourceURL=webpack://top-todo-list/./src/projectFormHandler.js?");
+
+/***/ }),
+
+/***/ "./src/projectHandler.js":
+/*!*******************************!*\
+  !*** ./src/projectHandler.js ***!
+  \*******************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   createProject: () => (/* binding */ createProject),\n/* harmony export */   getProject: () => (/* binding */ getProject)\n/* harmony export */ });\nconst projects = [];\n\nconst createProject = (name) => {\n    const getName = () => name;\n    const TODOs = [];\n    const addTODO = (todo) => {\n        TODOs.push(todo);\n    };\n    projects.push({ getName, addTODO });\n    console.log(projects[projects.length - 1].getName());\n};\n\n\nconst getProject = (index) => {\n    return projects[index];\n};\n\n\n\n//# sourceURL=webpack://top-todo-list/./src/projectHandler.js?");
 
 /***/ })
 
