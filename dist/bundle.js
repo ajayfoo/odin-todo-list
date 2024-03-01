@@ -116,7 +116,17 @@ eval("\n\n/* istanbul ignore next  */\nfunction styleTagTransform(css, styleElem
   \**********************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _style_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./style.css */ \"./src/style.css\");\n\n\nconst createProjectDialog = document.querySelector('#create-project+dialog');\ncreateProjectDialog.showModal();\n// const createTODODialog = document.querySelector('#create-todo+dialog');\n// createTODODialog.showModal();\n\n//# sourceURL=webpack://top-todo-list/./src/index.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _style_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./style.css */ \"./src/style.css\");\n/* harmony import */ var _modalHandler__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modalHandler */ \"./src/modalHandler.js\");\n\n\n\n_modalHandler__WEBPACK_IMPORTED_MODULE_1__.setupEventListeners();\n\n//# sourceURL=webpack://top-todo-list/./src/index.js?");
+
+/***/ }),
+
+/***/ "./src/modalHandler.js":
+/*!*****************************!*\
+  !*** ./src/modalHandler.js ***!
+  \*****************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   setupEventListeners: () => (/* binding */ setupEventListeners)\n/* harmony export */ });\n\nconst createProjectDialog = document.querySelector('#create-project+dialog');\nconst createTODODialog = document.querySelector('#create-todo+dialog');\nconst createProjectDialogBtn = document.querySelector('#create-project');\nconst createTODODialogBtn = document.querySelector('#create-todo');\nconst closeCreateProjectDialogBtn = document.querySelector('#create-project+dialog>form>.close-modal');\nconst closeCreateTODODialogBtn = document.querySelector('#create-todo+dialog>form>.close-modal');\n\nconst setupEventListeners = () => {\n    createProjectDialogBtn.addEventListener('click', () => {\n        createProjectDialog.showModal();\n    });\n    createTODODialogBtn.addEventListener('click', () => {\n        createTODODialog.showModal();\n    });\n    closeCreateProjectDialogBtn.addEventListener('click', () => {\n        createProjectDialog.close();\n    });\n    closeCreateTODODialogBtn.addEventListener('click', () => {\n        createTODODialog.close();\n    });\n}\n\n\n\n//# sourceURL=webpack://top-todo-list/./src/modalHandler.js?");
 
 /***/ })
 
