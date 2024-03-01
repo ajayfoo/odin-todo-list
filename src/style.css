@@ -84,6 +84,10 @@ dialog>form>.field {
     align-items: flex-start;
 }
 
+dialog>form>.field>*:last-child {
+    flex: 1;
+}
+
 dialog>form>.field>input,
 dialog>form>.field>select,
 dialog>form>.field>textarea {
