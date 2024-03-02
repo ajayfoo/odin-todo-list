@@ -23,7 +23,7 @@ const setupEventListeners = () => {
     createTODOBtn.addEventListener('click', () => {
         createTODODialog.showModal();
     });
-    closeCreateTODODialogBtn.addEventListener('click', () => closeCreateTODODialog);
+    closeCreateTODODialogBtn.addEventListener('click', closeCreateTODODialog);
 };
 
 export { setupEventListeners, closeCreateProjectDialog, closeCreateTODODialog };
