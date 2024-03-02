@@ -144,7 +144,6 @@ dialog>form * {
 .create-form-buttons {
     display: flex;
     justify-content: space-between;
-    gap: 15px;
 }
 
 .close-modal {
@@ -204,6 +203,4 @@ dialog>form * {
 
 #create-todo+dialog>form>.create-form-buttons {
     grid-column: 4/6;
-    align-self: start;
-    justify-self: center;
 }
