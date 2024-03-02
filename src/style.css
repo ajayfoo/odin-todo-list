@@ -98,7 +98,7 @@ dialog>form>.field>textarea {
     background-color: rgb(0 255 255);
 }
 
-.create-form-buttons>button {
+.create-form-buttons>input[type="submit"] {
     border: none;
     color: rgb(0 255 255);
     background-color: rgb(116, 105, 95);
@@ -107,12 +107,12 @@ dialog>form>.field>textarea {
     cursor: pointer;
 }
 
-.create-form-buttons>button:hover {
+.create-form-buttons>input[type="submit"]:hover {
     color: rgb(3, 236, 236);
     background-color: rgb(94, 85, 77);
 }
 
-.create-form-buttons>button:active {
+.create-form-buttons>input[type="submit"]:hover:active {
     color: rgb(4, 189, 189);
     background-color: rgb(70, 63, 57);
 }
@@ -120,7 +120,7 @@ dialog>form>.field>textarea {
 dialog>form>.field>input,
 dialog>form>.field>select,
 dialog>form>.field>textarea,
-.create-form-buttons>button {
+.create-form-buttons>input[type="submit"] {
     font-size: inherit;
     border-radius: 7px;
 }

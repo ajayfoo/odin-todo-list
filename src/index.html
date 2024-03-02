@@ -16,11 +16,12 @@
                     <form method="dialog">
                         <p class="field">
                             <label for="project-name">Project Name</label>
-                            <input type="text" name="project_name" id="project-name">
+                            <input minlength="3" maxlength="15" required type="text" name="project_name"
+                                id="project-name">
                         </p>
                         <div class="create-form-buttons">
-                            <button type="button">Create</button>
-                            <button type="button">Create & Go</button>
+                            <input type="submit" value="Create">
+                            <input type="submit" value="Create & Go">
                         </div>
                         <button class="close-modal" aria-label="close" type="button">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="5 5 14 14">
@@ -35,16 +36,16 @@
                     <form method="dialog">
                         <p class="field">
                             <label for="todo-name">TO-DO Name</label>
-                            <input type="text" name="todo_name" id="todo-name">
+                            <input minlength="3" maxlength="15" required type="text" name="todo_name" id="todo-name">
                         </p>
                         <p class="field">
                             <label for="create-todo-project-name">Project Name</label>
-                            <select id="create-todo-project-name">
+                            <select required id="create-todo-project-name">
                             </select>
                         </p>
                         <p class="field">
                             <label for="create-todo-priority">Priority</label>
-                            <select id="create-todo-priority">
+                            <select required id="create-todo-priority">
                                 <option value="1">1 - Hobby</option>
                                 <option value="2">2 - Chore</option>
                                 <option value="3">3 - Important</option>
@@ -52,15 +53,16 @@
                         </p>
                         <p class="field">
                             <label for="create-todo-description">Description</label>
-                            <textarea name="todo_description" id="create-todo-description" rows="3"></textarea>
+                            <textarea required minlength="3" maxlength="100" name="todo_description"
+                                id="create-todo-description" rows="3"></textarea>
                         </p>
                         <p class="field">
                             <label for="create-todo-due-date">Due Date</label>
-                            <input type="date" id="create-todo-due-date">
+                            <input required type="date" id="create-todo-due-date">
                         </p>
                         <div class="create-form-buttons">
-                            <button type="button">Create</button>
-                            <button type="button">Create & Go</button>
+                            <input type="submit" value="Create">
+                            <input type="submit" value="Create & Go">
                         </div>
                         <button class="close-modal" aria-label="close" type="button">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="5 5 14 14">
