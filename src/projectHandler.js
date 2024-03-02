@@ -9,7 +9,7 @@ const createProject = (name) => {
     };
     const projectOption = document.createElement('option');
     projectOption.textContent = name;
-    projectOption.setAttribute('index', projects.length);
+    projectOption.value = projects.length
     projectSelectElement.appendChild(projectOption);
     projects.push({ getName, addTODO });
     console.log(projects[projects.length - 1].getName());

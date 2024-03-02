@@ -1,5 +1,5 @@
 import * as ProjectHandler from './projectHandler';
-import { closeCreateProjectDialog, closeCreateTODODialog } from './modalHandler';
+import { closeCreateProjectDialog } from './modalHandler';
 
 const projectForm = document.querySelector('#create-project+dialog>form');
 const createProjectBtn = projectForm.querySelector('.create-form-buttons>button:first-child');
@@ -14,7 +14,7 @@ const setupEventListeners = () => {
     });
     createProjectAndGoBtn.addEventListener('click', () => {
         ProjectHandler.createProject(projectNameElement.value);
-        closeCreateTODODialog();
+        closeCreateProjectDialog();
         projectNameElement.value = '';
     });
 };
