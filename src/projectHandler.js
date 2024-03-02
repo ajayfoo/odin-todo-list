@@ -20,4 +20,6 @@ const getProject = (index) => {
     return projects[index];
 };
 
+createProject('Default');
+
 export { createProject, getProject };
