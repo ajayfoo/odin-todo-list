@@ -264,3 +264,11 @@ body>.container>.todo>.description>.show-more:hover {
 body>.container>.todo>.description>.rest {
     display: none;
 }
+
+body>.container>.todo>.description>.show-less {
+    color: rgb(63, 63, 63);
+    display: none;
+    font-size: 0.8em;
+    text-decoration: underline;
+    cursor: pointer;
+}

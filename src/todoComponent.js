@@ -13,6 +13,10 @@ const showMoreElements = todoHeaderElements.map(header => header.parentElement
     .querySelector('.description')
     .querySelector('.show-more')
 );
+const showLessElements = todoHeaderElements.map(header => header.parentElement
+    .querySelector('.description')
+    .querySelector('.show-less')
+);
 
 const setupEventListeners = () => {
     todoHeaderElements.forEach(header => {
@@ -34,9 +38,22 @@ const setupEventListeners = () => {
     console.log(showMoreElements);
     showMoreElements.forEach(showMore => {
         showMore.addEventListener('click', () => {
-            const restElem = showMore.nextElementSibling;
+            const parent = showMore.parentElement;
+            const restElem = parent.querySelector('.rest');
+            const showLess = parent.querySelector('.show-less');
             restElem.style.display = 'inline';
             showMore.style.display = 'none';
+            showLess.style.display = 'inline';
+        });
+    });
+    showLessElements.forEach(showLess => {
+        showLess.addEventListener('click', () => {
+            const parent = showLess.parentElement;
+            const restElem = parent.querySelector('.rest');
+            const showMore = parent.querySelector('.show-more');
+            restElem.style.display = 'none';
+            showLess.style.display = 'none';
+            showMore.style.display = 'inline';
         });
     });
 };
