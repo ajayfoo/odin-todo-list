@@ -216,6 +216,7 @@ body>.container {
 
 body>.container>.todo {
     border: 2px solid red;
+    padding: 0.4em;
     display: flex;
     flex-direction: column;
     height: min-content;
@@ -223,7 +224,6 @@ body>.container>.todo {
 
 body>.container>.todo>header {
     width: 100%;
-    padding: 0.4em;
     border: 1px dashed rgb(0 32 180);
     display: flex;
     justify-content: space-between;
@@ -242,7 +242,7 @@ body>.container>.todo>header>.twin>.priority {
     padding: 0.1em;
 }
 
-body>.container>.todo>header>.date {
+body>.container>.todo>header>.due-date {
     cursor: text;
 }
 
