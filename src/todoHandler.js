@@ -10,6 +10,6 @@ const createTODO = (name, projectIndex, priority, description, dueDate) => {
         getName, getPriority, getDescription, getDueDate
     });
     console.log(getName(), getPriority(), getDescription(), getDueDate(), 'Project Index: ' + projectIndex);
-}
+};
 
 export { createTODO };
