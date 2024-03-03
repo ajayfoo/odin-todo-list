@@ -1,17 +1,26 @@
+import { addContainerComponent } from "./containerComponent";
+
 const projects = [];
 
-const projectSelectElement = document.querySelector("#create-todo-project-name");
+const todoCreateProjectSelectElement = document.querySelector("#create-todo-project-name");
+const mainProjectSelectElement = document.querySelector('#select-project');
+const getNewProjectOption = (name) => {
+    const projectOption = document.createElement('option');
+    projectOption.textContent = name;
+    projectOption.value = projects.length;
+    return projectOption;
+};
 const createProject = (name) => {
     const getName = () => name;
     const TODOs = [];
     const addTODO = (todo) => {
         TODOs.push(todo);
     };
-    const projectOption = document.createElement('option');
-    projectOption.textContent = name;
-    projectOption.value = projects.length
-    projectSelectElement.appendChild(projectOption);
-    projects.push({ getName, addTODO });
+    const getTODOs = () => TODOs;
+    mainProjectSelectElement.appendChild(getNewProjectOption(name));
+    todoCreateProjectSelectElement.appendChild(getNewProjectOption(name));
+    projects.push({ getName, addTODO, getTODOs });
+    addContainerComponent();
     console.log(projects[projects.length - 1].getName());
 };
 
