@@ -62,7 +62,6 @@ const setupEventListeners = () => {
 const setupEventListener = (header, twin, dueDate, showMore, showLess) => {
     header.addEventListener('click', (event) => {
         event.stopPropagation();
-        console.log('hi again');
         toggleDescription(event.target.parentElement);
     });
     twin.addEventListener('click', (event) => {

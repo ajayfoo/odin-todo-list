@@ -210,7 +210,7 @@ dialog>form * {
 body>.container {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-    grid-template-rows: repeat(auto-fill, minmax(50px, min-content));
+    grid-template-rows: repeat(auto-fit, minmax(50px, min-content));
     gap: 15px;
 }
 
