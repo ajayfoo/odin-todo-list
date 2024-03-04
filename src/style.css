@@ -224,7 +224,6 @@ body>.container>.todo {
 
 body>.container>.todo>header {
     width: 100%;
-    border: 1px dashed rgb(0 32 180);
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -238,8 +237,7 @@ body>.container>.todo>header>.twin {
 }
 
 body>.container>.todo>header>.twin>.priority {
-    border-right: 1px solid rgb(0 32 180);
-    padding-right: 0.2em;
+    padding: 0.1em;
 }
 
 body>.container>.todo>header>.twin>.title {

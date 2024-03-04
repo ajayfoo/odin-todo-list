@@ -7,6 +7,7 @@ const toggleDescription = (todo) => {
     const computedStyleDisplay = window.getComputedStyle(description).display;
     description.style.display = computedStyleDisplay === 'none' ? 'block' : 'none';
 }
+
 const twinElements = todoHeaderElements.map(header => header.querySelector('.twin'));
 const dueDateElements = todoHeaderElements.map(header => header.querySelector('.due-date'));
 const showMoreElements = todoHeaderElements.map(header => header.parentElement
@@ -22,7 +23,6 @@ const setupEventListeners = () => {
     todoHeaderElements.forEach(header => {
         header.addEventListener('click', (event) => {
             event.stopPropagation();
-            console.log('hi again');
             toggleDescription(event.target.parentElement);
         });
     });
@@ -59,18 +59,55 @@ const setupEventListeners = () => {
     });
 };
 
-const setupEventListener = (header, twin, dueDate, showMore, showLess) => {
+const getNewHeaderComponent = (todo) => {
+    const priority = document.createElement('span');
+    priority.classList.add('priority');
+    priority.textContent = todo.getPriority();
+
+    const title = document.createElement('span');
+    title.classList.add('title');
+    title.textContent = todo.getName();
+
+    const twin = document.createElement('span');
+    twin.classList.add('twin');
+    twin.append(priority, title);
+    twin.addEventListener('click', (event) => {
+        event.stopPropagation();
+    });
+
+    const dueDate = document.createElement('span');
+    dueDate.classList.add('due-date');
+    dueDate.textContent = todo.getDueDate();
+    dueDate.addEventListener('click', (event) => {
+        event.stopPropagation();
+    });
+
+    const header = document.createElement('header');
+    header.append(twin, dueDate);
     header.addEventListener('click', (event) => {
         event.stopPropagation();
         toggleDescription(event.target.parentElement);
     });
-    twin.addEventListener('click', (event) => {
-        event.stopPropagation();
-    });
-    dueDate.addEventListener('click', (event) => {
-        event.stopPropagation();
-    });
-    console.log(showMoreElements);
+
+    return header;
+};
+
+const getNewDescriptionComponent = (descriptionTxt) => {
+    const description = document.createElement('p');
+    description.classList.add('description');
+    if (descriptionTxt.length <= 25) {
+        description.textContent = descriptionTxt;
+        return description;
+    }
+    const introTxt = descriptionTxt.slice(0, 26);
+
+    const rest = document.createElement('span');
+    rest.classList.add('rest');
+    rest.textContent = descriptionTxt.slice(26, descriptionTxt.length);
+
+    const showMore = document.createElement('span');
+    showMore.classList.add('show-more');
+    showMore.textContent = '...show more';
     showMore.addEventListener('click', () => {
         const parent = showMore.parentElement;
         const restElem = parent.querySelector('.rest');
@@ -79,6 +116,10 @@ const setupEventListener = (header, twin, dueDate, showMore, showLess) => {
         showMore.style.display = 'none';
         showLess.style.display = 'inline';
     });
+
+    const showLess = document.createElement('span');
+    showLess.classList.add('show-less');
+    showLess.textContent = '...show less';
     showLess.addEventListener('click', () => {
         const parent = showLess.parentElement;
         const restElem = parent.querySelector('.rest');
@@ -87,62 +128,22 @@ const setupEventListener = (header, twin, dueDate, showMore, showLess) => {
         showLess.style.display = 'none';
         showMore.style.display = 'inline';
     });
+
+    description.append(introTxt, showMore, rest, showLess);
+    return description;
 };
+
 const getNewTODOComponent = (todo) => {
     const todoComponent = document.createElement('div');
     todoComponent.classList.add('todo');
-    const header = document.createElement('header');
-    const twin = document.createElement('span');
-    twin.classList.add('twin');
-    const priority = document.createElement('span');
-    priority.classList.add('priority');
-    const title = document.createElement('span');
-    title.classList.add('title');
-    twin.append(priority, title);
-    const dueDate = document.createElement('span');
-    dueDate.classList.add('due-date');
-    header.append(twin, dueDate);
-    const description = document.createElement('p');
-    description.classList.add('description');
-    const showMore = document.createElement('span');
-    showMore.classList.add('show-more');
-    const rest = document.createElement('span');
-    rest.classList.add('rest');
-    const showLess = document.createElement('span');
-    showLess.classList.add('show-less');
-    description.append('some text content', showMore, rest, showLess);
+    const header = getNewHeaderComponent(todo);
+    const description = getNewDescriptionComponent(todo.getDescription());
     todoComponent.append(header, description);
-    priority.textContent = todo.getPriority();
-    title.textContent = todo.getName();
-    dueDate.textContent = todo.getDueDate();
-    showMore.textContent = '...show more';
-    rest.textContent = todo.getDescription();
-    showLess.textContent = '...show less';
-    setupEventListener(header, twin, dueDate, showMore, showLess);
     return todoComponent;
 };
 
 const createTODOComponent = (projectIndex, todo) => {
     ContainerComponent.addTODOComponent(projectIndex, getNewTODOComponent(todo));
 };
-/*
-        <div class="todo">
-            <header>
-                <span class="twin">
-                    <span class="priority">1</span>
-                    <span class="title">Art Work</span>
-                </span>
-                <span class="due-date">1.2.23</span>
-            </header>
-            <p class="description">
-                Lorem ipsum dolor, sit amet consectetur adipisicing elit. Saepe possimus a vero ad
-                <span class="show-more">...show more</span>
-                <span class="rest">
-                    c onsequatur
-                    accusantium, ea facilis corrupti quos harum quia impedit, suscipit alias eveniet?
-                </span>
-                <span class="show-less">...show less</span>
-            </p>
-        </div>
-*/
+
 export { setupEventListeners, createTODOComponent };
