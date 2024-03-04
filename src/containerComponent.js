@@ -1,6 +1,5 @@
 const body = document.body;
 const todoContainerComponents = [];
-const currentContainer = document.querySelector('.container');
 
 const addContainerComponent = () => {
     const container = document.createElement('div');
@@ -13,9 +12,15 @@ const addTODOComponent = (projectIndex, todoComponent) => {
 }
 
 const changeContainerTo = (projectIndex) => {
+    const currentContainer = document.querySelector('.container');
+    console.log('Before');
     console.log(projectIndex);
     console.log(todoContainerComponents[projectIndex]);
+    console.log(currentContainer);
     body.replaceChild(todoContainerComponents[projectIndex], currentContainer);
+    console.log('After');
+    console.log(todoContainerComponents[projectIndex]);
+    console.log(currentContainer);
 };
 
 export { addContainerComponent, addTODOComponent, changeContainerTo };

@@ -239,7 +239,11 @@ body>.container>.todo>header>.twin {
 
 body>.container>.todo>header>.twin>.priority {
     border-right: 1px solid rgb(0 32 180);
-    padding: 0.1em;
+    padding-right: 0.2em;
+}
+
+body>.container>.todo>header>.twin>.title {
+    padding-left: 0.2em;
 }
 
 body>.container>.todo>header>.due-date {
