@@ -1,4 +1,5 @@
 import * as ProjectHandler from './projectHandler';
+import * as ProjectSelector from './projectSelector';
 
 const body = document.body;
 
@@ -32,6 +33,7 @@ const updateProjectComponentTODOCount = (projectIndex) => {
 const switchToAllProjects = () => {
     const currentContainer = document.querySelector('.container');
     body.replaceChild(projectComponentContainer, currentContainer);
+    ProjectSelector.unsetProjectSelection();
 };
 
 export { createProjectComponent, switchToAllProjects, updateProjectComponentTODOCount };

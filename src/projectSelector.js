@@ -11,6 +11,10 @@ const setupEventListeners = () => {
     allProjectsEle.addEventListener('click', () => {
         switchToAllProjects();
     });
-}
+};
 
-export { setupEventListeners };
+const unsetProjectSelection = () => {
+    projectSelectEle.selectedIndex = -1;
+};
+
+export { setupEventListeners, unsetProjectSelection };
