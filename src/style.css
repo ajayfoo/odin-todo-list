@@ -217,7 +217,7 @@ dialog>form * {
 
 body>.container {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     grid-template-rows: repeat(auto-fit, minmax(50px, min-content));
     gap: 15px;
 }
@@ -250,6 +250,7 @@ body>.container>.todo {
     padding: 1em;
     display: flex;
     flex-direction: column;
+    height: min-content;
 }
 
 body>.container>.todo>header {
@@ -307,4 +308,34 @@ body>.container>.todo>.description>.rest {
 
 body>.container>.todo>.description>.show-less {
     display: none;
+}
+
+body>.container>.todo.hobby {
+    background-color: rgb(151, 194, 96);
+    color: rgb(75, 34, 34);
+}
+
+body>.container>.todo.hobby>.description {
+    background-color: rgb(134, 170, 87);
+    color: rgb(255 255 255);
+}
+
+body>.container>.todo.chore {
+    background-color: rgb(209, 221, 42);
+    color: rgb(71, 47, 47);
+}
+
+body>.container>.todo.chore>.description {
+    background-color: rgb(172, 182, 34);
+    color: rgb(255 255 255);
+}
+
+body>.container>.todo.important {
+    background-color: rgb(243, 147, 159);
+    color: rgb(0, 0, 43);
+}
+
+body>.container>.todo.important>.description {
+    background-color: rgb(201, 124, 133);
+    color: rgb(255 255 255);
 }

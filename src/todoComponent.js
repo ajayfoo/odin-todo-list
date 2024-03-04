@@ -4,7 +4,15 @@ const toggleDescription = (todo) => {
     const description = todo.querySelector('.description');
     const computedStyleDisplay = window.getComputedStyle(description).display;
     description.style.display = computedStyleDisplay === 'none' ? 'block' : 'none';
-}
+};
+
+const getClassForPriority = (priority) => {
+    switch (priority) {
+        case 1: return 'hobby';
+        case 2: return 'chore';
+        default: return 'important';
+    }
+};
 
 const getNewHeaderComponent = (todo) => {
     const priority = document.createElement('span');
@@ -76,6 +84,9 @@ const getNewDescriptionComponent = (descriptionTxt) => {
 const getNewTODOComponent = (todo) => {
     const todoComponent = document.createElement('div');
     todoComponent.classList.add('todo');
+    todoComponent.classList.add(
+        getClassForPriority(todo.getPriority())
+    );
     const header = getNewHeaderComponent(todo);
     const description = getNewDescriptionComponent(todo.getDescription());
     todoComponent.append(header, description);
