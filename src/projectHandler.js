@@ -1,4 +1,5 @@
 import { addContainerComponent } from "./containerComponent";
+import { createProjectComponent } from "./projectComponent";
 
 const projects = [];
 
@@ -19,8 +20,10 @@ const createProject = (name) => {
     const getTODOs = () => TODOs;
     mainProjectSelectElement.appendChild(getNewProjectOption(name));
     todoCreateProjectSelectElement.appendChild(getNewProjectOption(name));
-    projects.push({ getName, addTODO, getTODOs });
+    const project = { getName, addTODO, getTODOs };
+    projects.push(project);
     addContainerComponent();
+    createProjectComponent(project);
     console.log(projects[projects.length - 1].getName());
 };
 

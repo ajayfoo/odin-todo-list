@@ -52,11 +52,18 @@ body>header>.toolbar>span>select[name='project']:focus {
 }
 
 #create-project,
-#create-todo {
+#create-todo,
+#all-projects {
     background-color: slategrey;
     color: rgb(0, 255, 255);
     cursor: pointer;
     margin-left: 0.5em;
+}
+
+#all-projects {
+    background-color: rgb(222 184 135);
+    border: none;
+    color: rgb(0 0 0);
 }
 
 .container {
@@ -274,4 +281,20 @@ body>.container>.todo>.description>.show-less {
     font-size: 0.8em;
     text-decoration: underline;
     cursor: pointer;
+}
+
+body>.container>.project {
+    padding: 1em;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 5px;
+    box-shadow: 2px 2px 2px rgb(0 0 0 / 0.3);
+    background-color: rgb(204, 197, 177);
+    color: rgb(0, 0, 43);
+}
+
+body>.container>.project * {
+    background-color: inherit;
+    color: inherit;
 }
