@@ -241,7 +241,6 @@ body>.container>.todo>header {
 body>.container>.todo>header>.twin {
     border: 1px solid rgb(0 32 180);
     padding: 0.1em;
-    cursor: text;
 }
 
 body>.container>.todo>header>.twin>.priority {
@@ -252,11 +251,8 @@ body>.container>.todo>header>.twin>.title {
     padding-left: 0.2em;
 }
 
-body>.container>.todo>header>.due-date {
-    cursor: text;
-}
-
 body>.container>.todo>.description {
+    overflow-wrap: break-word;
     display: none;
 }
 
@@ -292,6 +288,7 @@ body>.container>.project {
     box-shadow: 2px 2px 2px rgb(0 0 0 / 0.3);
     background-color: rgb(204, 197, 177);
     color: rgb(0, 0, 43);
+    cursor: pointer;
 }
 
 body>.container>.project * {

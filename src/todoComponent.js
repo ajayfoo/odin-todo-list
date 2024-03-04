@@ -18,16 +18,10 @@ const getNewHeaderComponent = (todo) => {
     const twin = document.createElement('span');
     twin.classList.add('twin');
     twin.append(priority, title);
-    twin.addEventListener('click', (event) => {
-        event.stopPropagation();
-    });
 
     const dueDate = document.createElement('span');
     dueDate.classList.add('due-date');
     dueDate.textContent = todo.getDueDate();
-    dueDate.addEventListener('click', (event) => {
-        event.stopPropagation();
-    });
 
     const header = document.createElement('header');
     header.append(twin, dueDate);

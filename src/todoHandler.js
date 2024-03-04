@@ -17,4 +17,6 @@ const createTODO = (name, projectIndex, priority, description, dueDate) => {
     console.table(project.getTODOs());
 };
 
+createTODO('Bar', 0, 2, 'document.querySelector("#select-project")', '2023-2-2');
+
 export { createTODO };
