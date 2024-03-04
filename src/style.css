@@ -33,6 +33,7 @@ body>header>.toolbar>span {
 
 #create-project,
 #create-todo,
+#all-projects,
 body>header>.toolbar>span>select[name='project'] {
     font-size: inherit;
     padding: 0.5em 1em;
