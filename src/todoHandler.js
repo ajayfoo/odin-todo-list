@@ -1,11 +1,12 @@
 import * as ProjectHandler from './projectHandler';
 import * as TODOComponent from './todoComponent';
 import * as ProjectComponent from './projectComponent';
+import { format } from 'date-fns';
 const createTODO = (name, projectIndex, priority, description, dueDate) => {
     const getName = () => name;
     const getPriority = () => priority;
     const getDescription = () => description;
-    const getDueDate = () => dueDate;
+    const getDueDate = () => format(dueDate, "d.L.yy");
     const project = ProjectHandler.getProject(projectIndex);
     const todo = {
         getName, getPriority, getDescription, getDueDate

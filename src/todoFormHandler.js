@@ -14,7 +14,7 @@ const setupEventListeners = () => {
             projectSelectEle.value,
             todoPriorityEle.value,
             todoDescriptionEle.value,
-            todoDueDateEle.value
+            todoDueDateEle.value,
         );
         todoForm.reset();
     });
