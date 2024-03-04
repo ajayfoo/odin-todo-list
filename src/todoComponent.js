@@ -25,9 +25,8 @@ const getNewHeaderComponent = (todo) => {
 
     const header = document.createElement('header');
     header.append(twin, dueDate);
-    header.addEventListener('click', (event) => {
-        event.stopPropagation();
-        toggleDescription(event.target.parentElement);
+    header.addEventListener('click', () => {
+        toggleDescription(header.parentElement);
     });
 
     return header;
