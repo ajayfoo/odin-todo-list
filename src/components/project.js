@@ -1,5 +1,5 @@
-import * as ProjectHandler from './projectHandler';
-import * as ProjectSelector from './projectSelector';
+import * as ProjectHandler from '../handlers/project';
+import * as ProjectSelector from '../projectSelector';
 
 const body = document.body;
 

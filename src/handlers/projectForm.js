@@ -1,4 +1,4 @@
-import * as ProjectHandler from './projectHandler';
+import * as ProjectHandler from './project';
 
 const projectForm = document.querySelector('#create-project+dialog>form');
 const projectNameElement = projectForm.querySelector('#project-name');

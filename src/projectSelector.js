@@ -1,15 +1,15 @@
-import { changeContainerTo } from "./containerComponent";
-import { switchToAllProjects } from "./projectComponent";
+import * as ContainerComponent from "./components/container";
+import * as ProjectComponent from "./components/project";
 
 const projectSelectEle = document.querySelector("#select-project");
 const allProjectsEle = document.querySelector("#all-projects");
 
 const setupEventListeners = () => {
     projectSelectEle.addEventListener('change',
-        () => changeContainerTo(projectSelectEle.value)
+        () => ContainerComponent.changeContainerTo(projectSelectEle.value)
     );
     allProjectsEle.addEventListener('click', () => {
-        switchToAllProjects();
+        ProjectComponent.switchToAllProjects();
     });
 };
 

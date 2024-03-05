@@ -1,4 +1,4 @@
-import * as TodoHandler from './todoHandler';
+import * as TodoHandler from './todo';
 
 const todoForm = document.querySelector('#create-todo+dialog>form');
 const todoNameEle = document.querySelector('#todo-name');

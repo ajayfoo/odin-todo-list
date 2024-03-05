@@ -1,6 +1,6 @@
-import * as ProjectHandler from './projectHandler';
-import * as TODOComponent from './todoComponent';
-import * as ProjectComponent from './projectComponent';
+import * as ProjectHandler from './project';
+import * as TODOComponent from '../components/todo';
+import * as ProjectComponent from '../components/project';
 import { format } from 'date-fns';
 const createTODO = (name, projectIndex, priority, description, dueDate) => {
     const getName = () => name;

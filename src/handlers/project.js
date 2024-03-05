@@ -1,5 +1,5 @@
-import * as ContainerComponent from "./containerComponent";
-import { createProjectComponent } from "./projectComponent";
+import * as ContainerComponent from "../components/container";
+import { createProjectComponent } from "../components/project";
 
 const projects = [];
 

@@ -1,4 +1,4 @@
-import * as ContainerComponent from './containerComponent';
+import * as ContainerComponent from './container';
 
 const toggleDescription = (todo) => {
     const description = todo.querySelector('.description');
