@@ -1,5 +1,5 @@
 import * as ContainerComponent from "../components/container";
-import { createProjectComponent } from "../components/project";
+import * as ProjectComponent from "../components/project";
 
 const projects = [];
 
@@ -26,7 +26,7 @@ const createProject = (name) => {
     const project = { getName, addTODO, getTODOs };
     projects.push(project);
     ContainerComponent.addContainerComponent();
-    createProjectComponent(project, projects.length - 1);
+    ProjectComponent.createProjectComponent(project, projects.length - 1);
     console.log(projects[projects.length - 1].getName());
 };
 
