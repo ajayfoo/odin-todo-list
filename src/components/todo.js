@@ -1,6 +1,4 @@
-import * as ContainerComponent from './container';
-import * as ProjectHandler from '../handlers/project';
-import * as ProjectComponent from '../components/project';
+import * as TODOHandler from '../handlers/todo';
 
 const toggleExpansion = (todo) => {
     const description = todo.querySelector('.description');
@@ -101,9 +99,7 @@ const getNewButtonsComponent = (projectIndex, todoIndex) => {
     deleteBtn.textContent = 'Delete';
     deleteBtn.addEventListener('click', () => {
         buttons.parentElement.remove();
-        const project = ProjectHandler.getProject(projectIndex);
-        project.removeTODO(todoIndex);
-        ProjectComponent.updateProjectComponentTODOCount(projectIndex);
+        TODOHandler.deleteTODO(projectIndex, todoIndex);
     });
 
     buttons.append(editBtn, deleteBtn);
@@ -121,15 +117,9 @@ const getNewTODOComponent = (projectIndex, todo, todoIndex) => {
     const header = getNewHeaderComponent(todo);
     const description = getNewDescriptionComponent(todo.getDescription());
     const buttons = getNewButtonsComponent(projectIndex, todoIndex)
+
     todoComponent.append(header, description, buttons);
     return todoComponent;
 };
 
-const createTODOComponent = (projectIndex, todo, todoIndex) => {
-    ContainerComponent.addTODOComponent(projectIndex, getNewTODOComponent(projectIndex, todo, todoIndex));
-};
-
-const removeTODOComponent = (projectIndex, todoIndex) => {
-};
-
-export { createTODOComponent };
+export { getNewTODOComponent };

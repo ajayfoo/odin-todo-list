@@ -1,26 +1,24 @@
 import * as ProjectHandler from './project';
+import * as TODOModal from '../model/todo';
 import * as TODOComponent from '../components/todo';
-import * as ProjectComponent from '../components/project';
+import * as ContainerComponent from '../components/container'
 import { format } from 'date-fns';
 
 const createTODO = (name, projectIndex, priority, description, dueDate) => {
-    const getName = () => name;
-    const getPriority = () => priority;
-    const getDescription = () => description;
-    const getDueDate = () => format(dueDate, "d.L.yy");
-    const project = ProjectHandler.getProject(projectIndex);
-    const todo = {
-        getName, getPriority, getDescription, getDueDate
-    };
-    project.addTODO(todo);
-    TODOComponent.createTODOComponent(projectIndex, todo, project.getNumOfTODOs() - 1);
-    ProjectComponent.updateProjectComponentTODOCount(projectIndex);
-    console.log(getName(), getPriority(), getDescription(), getDueDate(), 'Project Index: ' + projectIndex);
-    console.table(project.getTODOs());
+    // dueDate = format(dueDate);
+    const todo = TODOModal.getNewTODO(name, priority, description, '2.2.23');
+    const todoIndex = ProjectHandler.addTODOToProject(todo, projectIndex);
+    ContainerComponent.addTODOComponentToContainer(projectIndex,
+        TODOComponent.getNewTODOComponent(projectIndex, todo, todoIndex)
+    );
+};
+
+const deleteTODO = (projectIndex, todoIndex) => {
+    ProjectHandler.deleteTODOOfProject(projectIndex, todoIndex);
 };
 
 createTODO('Art Work', 0, 1, 'document.querySelector("#select-project")', new Date());
 createTODO('Music', 0, 2, 'document.querySelector("#select-project")', new Date());
 createTODO('Study', 0, 3, 'document.querySelector("#select-project")', new Date());
 
-export { createTODO };
+export { createTODO, deleteTODO };

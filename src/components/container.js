@@ -7,7 +7,7 @@ const addContainerComponent = () => {
     todoContainerComponents.push(container);
 };
 
-const addTODOComponent = (projectIndex, todoComponent) => {
+const addTODOComponentToContainer = (projectIndex, todoComponent) => {
     todoContainerComponents[projectIndex].appendChild(todoComponent);
 }
 
@@ -16,4 +16,4 @@ const changeContainerTo = (projectIndex) => {
     body.replaceChild(todoContainerComponents[projectIndex], currentContainer);
 };
 
-export { addContainerComponent, addTODOComponent, changeContainerTo };
+export { addContainerComponent, addTODOComponentToContainer, changeContainerTo };

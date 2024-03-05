@@ -1,49 +1,36 @@
 import * as ContainerComponent from "../components/container";
 import * as ProjectComponent from "../components/project";
-
-const projects = [];
+import * as ProjectModel from "../model/project";
 
 const todoCreateProjectSelectElement = document.querySelector("#create-todo-project-name");
 const projectSelectEle = document.querySelector("#select-project");
 const allProjectsEle = document.querySelector("#all-projects");
 
-const getNewProjectOption = (name) => {
-    const projectOption = document.createElement('option');
-    projectOption.textContent = name;
-    projectOption.value = projects.length;
-    return projectOption;
-};
 
 const createProject = (name) => {
-    const getName = () => name;
-    const TODOs = [];
-    const addTODO = (todo) => {
-        TODOs.push(todo);
-    };
-    const removeTODO = (index) => {
-        TODOs[index] = null;
-    };
-    const getTODOs = () => TODOs;
-    const getNumOfTODOs = () => TODOs.reduce((acc, curr) => {
-        if (curr != null) ++acc;
-        return acc;
-    }, 0);
-    projectSelectEle.appendChild(getNewProjectOption(name));
-    todoCreateProjectSelectElement.appendChild(getNewProjectOption(name));
-    const project = { getName, addTODO, getTODOs, removeTODO, getNumOfTODOs };
-    projects.push(project);
+    const project = ProjectModel.getNewProject(name);
+    ProjectModel.addProject(project);
+    const projectIndex = ProjectModel.getNumOfProjects() - 1;
+
+    projectSelectEle.appendChild(
+        ProjectComponent.getNewProjectOptionElement(name, projectIndex)
+    );
+    todoCreateProjectSelectElement.appendChild(
+        ProjectComponent.getNewProjectOptionElement(name, projectIndex)
+    );
+
     ContainerComponent.addContainerComponent();
-    ProjectComponent.createProjectComponent(project, projects.length - 1);
-    console.log(projects[projects.length - 1].getName());
+
+    const projectComponent = ProjectComponent.getNewProjectComponent(
+        project,
+        projectIndex
+    );
+    ProjectComponent.addProjectComponent(projectComponent);
 };
 
 const changeCurrentProject = (projectIndex) => {
     projectSelectEle.selectedIndex = projectIndex;
     ContainerComponent.changeContainerTo(projectIndex);
-};
-
-const getProject = (index) => {
-    return projects[index];
 };
 
 const setupEventListeners = () => {
@@ -59,6 +46,19 @@ const unsetProjectSelection = () => {
     projectSelectEle.selectedIndex = -1;
 };
 
+const addTODOToProject = (todo, projectIndex) => {
+    const project = ProjectModel.getProject(projectIndex);
+    project.addTODO(todo);
+    ProjectComponent.updateProjectComponentTODOCount(projectIndex, project.getNumOfTODOs());
+    return project.getNumOfTODOs() - 1;
+};
+
+const deleteTODOOfProject = (projectIndex, todoIndex) => {
+    const project = ProjectModel.getProject(projectIndex);
+    project.removeTODO(todoIndex);
+    ProjectComponent.updateProjectComponentTODOCount(projectIndex, project.getNumOfTODOs());
+};
+
 createProject('Default');
 
-export { createProject, getProject, changeCurrentProject, setupEventListeners, unsetProjectSelection };
+export { createProject, changeCurrentProject, setupEventListeners, unsetProjectSelection, addTODOToProject, deleteTODOOfProject };

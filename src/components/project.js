@@ -6,7 +6,15 @@ const projectComponents = [];
 const projectComponentContainer = document.createElement('div');
 projectComponentContainer.classList.add('container');
 
-const createProjectComponent = (project, projectIndex) => {
+
+const getNewProjectOptionElement = (name, projectIndex) => {
+    const projectOption = document.createElement('option');
+    projectOption.textContent = name;
+    projectOption.value = projectIndex;
+    return projectOption;
+};
+
+const getNewProjectComponent = (project, projectIndex) => {
     const projectComponent = document.createElement('div');
     projectComponent.classList.add('project');
     projectComponent.addEventListener('click', () => {
@@ -20,16 +28,18 @@ const createProjectComponent = (project, projectIndex) => {
     const numOfTODOs = document.createElement('span');
     numOfTODOs.classList.add('num-of-todos');
     numOfTODOs.textContent = project.getTODOs().length + ' TO-DO(s)';
-
     projectComponent.append(name, numOfTODOs);
+    return projectComponent;
+};
+
+const addProjectComponent = (projectComponent) => {
     projectComponents.push(projectComponent);
     projectComponentContainer.appendChild(projectComponent);
 };
 
-const updateProjectComponentTODOCount = (projectIndex) => {
-    const project = ProjectHandler.getProject(projectIndex);
+const updateProjectComponentTODOCount = (projectIndex, newTODOCount) => {
     projectComponents[projectIndex].querySelector('.num-of-todos')
-        .textContent = project.getNumOfTODOs() + ' TO-DO(s)'
+        .textContent = newTODOCount + ' TO-DO(s)'
 };
 
 const switchToAllProjects = () => {
@@ -39,4 +49,4 @@ const switchToAllProjects = () => {
     ProjectHandler.unsetProjectSelection();
 };
 
-export { createProjectComponent, switchToAllProjects, updateProjectComponentTODOCount };
+export { getNewProjectComponent, addProjectComponent, switchToAllProjects, updateProjectComponentTODOCount, getNewProjectOptionElement };
