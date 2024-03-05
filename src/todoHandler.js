@@ -18,8 +18,8 @@ const createTODO = (name, projectIndex, priority, description, dueDate) => {
     console.table(project.getTODOs());
 };
 
-createTODO('Art Work', 0, 1, 'document.querySelector("#select-project")', '2023-2-2');
-createTODO('Music', 0, 2, 'document.querySelector("#select-project")', '2023-2-2');
-createTODO('Study', 0, 3, 'document.querySelector("#select-project")', '2023-2-2');
+createTODO('Art Work', 0, 1, 'document.querySelector("#select-project")', new Date());
+createTODO('Music', 0, 2, 'document.querySelector("#select-project")', new Date());
+createTODO('Study', 0, 3, 'document.querySelector("#select-project")', new Date());
 
 export { createTODO };

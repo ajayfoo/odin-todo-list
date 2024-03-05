@@ -7,9 +7,12 @@ const projectComponents = [];
 const projectComponentContainer = document.createElement('div');
 projectComponentContainer.classList.add('container');
 
-const createProjectComponent = (project) => {
+const createProjectComponent = (project, projectIndex) => {
     const projectComponent = document.createElement('div');
     projectComponent.classList.add('project');
+    projectComponent.addEventListener('click', () => {
+        ProjectHandler.changeCurrentProject(projectIndex);
+    });
 
     const name = document.createElement('span');
     name.classList.add('name');
