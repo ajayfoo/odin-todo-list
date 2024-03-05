@@ -279,7 +279,7 @@ body>.container>.todo>header>.twin>.title {
 }
 
 body>.container>.todo>.description {
-    margin-top: 1em;
+    margin: 1em 0;
     padding: 0.5em;
     background-color: rgb(226, 108, 123);
     color: rgb(0, 0, 43);
@@ -307,6 +307,33 @@ body>.container>.todo>.description>.rest {
 }
 
 body>.container>.todo>.description>.show-less {
+    display: none;
+}
+
+body>.container>.todo>.buttons {
+    display: flex;
+    justify-content: space-around;
+}
+
+body>.container>.todo>.buttons>button {
+    background-color: rgb(59, 59, 59);
+    color: rgb(240, 248, 255);
+    border: none;
+    padding: 0.25em 0.5em;
+    border-radius: 5px;
+    font-size: inherit;
+    cursor: pointer;
+}
+
+body>.container>.todo>.buttons>button:last-child {
+    background-color: rgb(196, 44, 44);
+}
+
+body>.container>.todo>.buttons>button:active {
+    background-color: rgb(95, 25, 25);
+}
+
+body>.container>.todo>.buttons.hide {
     display: none;
 }
 

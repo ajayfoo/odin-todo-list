@@ -20,10 +20,17 @@ const createProject = (name) => {
     const addTODO = (todo) => {
         TODOs.push(todo);
     };
+    const removeTODO = (index) => {
+        TODOs[index] = null;
+    };
     const getTODOs = () => TODOs;
+    const getNumOfTODOs = () => TODOs.reduce((acc, curr) => {
+        if (curr != null) ++acc;
+        return acc;
+    }, 0);
     projectSelectEle.appendChild(getNewProjectOption(name));
     todoCreateProjectSelectElement.appendChild(getNewProjectOption(name));
-    const project = { getName, addTODO, getTODOs };
+    const project = { getName, addTODO, getTODOs, removeTODO, getNumOfTODOs };
     projects.push(project);
     ContainerComponent.addContainerComponent();
     ProjectComponent.createProjectComponent(project, projects.length - 1);

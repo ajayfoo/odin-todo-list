@@ -29,7 +29,7 @@ const createProjectComponent = (project, projectIndex) => {
 const updateProjectComponentTODOCount = (projectIndex) => {
     const project = ProjectHandler.getProject(projectIndex);
     projectComponents[projectIndex].querySelector('.num-of-todos')
-        .textContent = project.getTODOs().length + ' TO-DO(s)'
+        .textContent = project.getNumOfTODOs() + ' TO-DO(s)'
 };
 
 const switchToAllProjects = () => {

@@ -1,9 +1,13 @@
 import * as ContainerComponent from './container';
+import * as ProjectHandler from '../handlers/project';
+import * as ProjectComponent from '../components/project';
 
-const toggleDescription = (todo) => {
+const toggleExpansion = (todo) => {
     const description = todo.querySelector('.description');
+    const buttons = todo.querySelector('.buttons');
     const computedStyleDisplay = window.getComputedStyle(description).display;
     description.style.display = computedStyleDisplay === 'none' ? 'block' : 'none';
+    buttons.classList.toggle('hide');
 };
 
 const getClassForPriority = (priority) => {
@@ -34,7 +38,7 @@ const getNewHeaderComponent = (todo) => {
     const header = document.createElement('header');
     header.append(twin, dueDate);
     header.addEventListener('click', () => {
-        toggleDescription(header.parentElement);
+        toggleExpansion(header.parentElement);
     });
 
     return header;
@@ -81,20 +85,51 @@ const getNewDescriptionComponent = (descriptionTxt) => {
     return description;
 };
 
-const getNewTODOComponent = (todo) => {
+const getNewButtonsComponent = (projectIndex, todoIndex) => {
+    const buttons = document.createElement('div');
+    buttons.classList.add('buttons');
+    buttons.classList.add('hide');
+
+    const editBtn = document.createElement('button');
+    editBtn.setAttribute('type', 'button');
+    editBtn.textContent = 'Edit';
+    editBtn.addEventListener('click', () => {
+    });
+
+    const deleteBtn = document.createElement('button');
+    deleteBtn.setAttribute('type', 'button');
+    deleteBtn.textContent = 'Delete';
+    deleteBtn.addEventListener('click', () => {
+        buttons.parentElement.remove();
+        const project = ProjectHandler.getProject(projectIndex);
+        project.removeTODO(todoIndex);
+        ProjectComponent.updateProjectComponentTODOCount(projectIndex);
+    });
+
+    buttons.append(editBtn, deleteBtn);
+    return buttons;
+};
+
+const getNewTODOComponent = (projectIndex, todo, todoIndex) => {
     const todoComponent = document.createElement('div');
     todoComponent.classList.add('todo');
     todoComponent.classList.add(
         getClassForPriority(todo.getPriority())
     );
+    todoComponent.setAttribute('data-index', todoIndex);
+
     const header = getNewHeaderComponent(todo);
     const description = getNewDescriptionComponent(todo.getDescription());
-    todoComponent.append(header, description);
+    const buttons = getNewButtonsComponent(projectIndex, todoIndex)
+    todoComponent.append(header, description, buttons);
     return todoComponent;
 };
 
-const createTODOComponent = (projectIndex, todo) => {
-    ContainerComponent.addTODOComponent(projectIndex, getNewTODOComponent(todo));
+const createTODOComponent = (projectIndex, todo, todoIndex) => {
+    ContainerComponent.addTODOComponent(projectIndex, getNewTODOComponent(projectIndex, todo, todoIndex));
+};
+
+const removeTODOComponent = (projectIndex, todoIndex) => {
 };
 
 export { createTODOComponent };

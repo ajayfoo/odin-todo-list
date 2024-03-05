@@ -2,6 +2,7 @@ import * as ProjectHandler from './project';
 import * as TODOComponent from '../components/todo';
 import * as ProjectComponent from '../components/project';
 import { format } from 'date-fns';
+
 const createTODO = (name, projectIndex, priority, description, dueDate) => {
     const getName = () => name;
     const getPriority = () => priority;
@@ -12,7 +13,7 @@ const createTODO = (name, projectIndex, priority, description, dueDate) => {
         getName, getPriority, getDescription, getDueDate
     };
     project.addTODO(todo);
-    TODOComponent.createTODOComponent(projectIndex, todo);
+    TODOComponent.createTODOComponent(projectIndex, todo, project.getNumOfTODOs() - 1);
     ProjectComponent.updateProjectComponentTODOCount(projectIndex);
     console.log(getName(), getPriority(), getDescription(), getDueDate(), 'Project Index: ' + projectIndex);
     console.table(project.getTODOs());
