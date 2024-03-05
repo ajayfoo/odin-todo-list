@@ -5,8 +5,7 @@ import * as ContainerComponent from '../components/container'
 import { format } from 'date-fns';
 
 const createTODO = (name, projectIndex, priority, description, dueDate) => {
-    // dueDate = format(dueDate);
-    const todo = TODOModal.getNewTODO(name, priority, description, '2.2.23');
+    const todo = TODOModal.getNewTODO(name, priority, description, format(dueDate, 'dd.L.yy'));
     const todoIndex = ProjectHandler.addTODOToProject(todo, projectIndex);
     ContainerComponent.addTODOComponentToContainer(projectIndex,
         TODOComponent.getNewTODOComponent(projectIndex, todo, todoIndex)
