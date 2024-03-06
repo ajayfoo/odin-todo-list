@@ -1,6 +1,6 @@
 import * as ProjectHandler from './project';
 
-const projectForm = document.querySelector('#create-project+dialog>form');
+const projectForm = document.querySelector('#create-project-modal>form');
 const projectNameElement = projectForm.querySelector('#project-name');
 
 const setupEventListeners = () => {
