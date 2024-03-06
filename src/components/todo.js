@@ -1,5 +1,9 @@
 import * as TODOHandler from '../handlers/todo';
+import * as TODOForm from '../handlers/todoForm';
+import * as DateFns from 'date-fns';
 
+const updateTODOModal = document.querySelector('#update-todo-modal');
+const updateTODOForm = updateTODOModal.querySelector('form');
 const toggleExpansion = (todo) => {
     const description = todo.querySelector('.description');
     const buttons = todo.querySelector('.buttons');
@@ -31,7 +35,7 @@ const getNewHeaderComponent = (todo) => {
 
     const dueDate = document.createElement('span');
     dueDate.classList.add('due-date');
-    dueDate.textContent = todo.getDueDate();
+    dueDate.textContent = DateFns.format(todo.getDueDate(), 'd.L.yy');
 
     const header = document.createElement('header');
     header.append(twin, dueDate);
@@ -92,6 +96,9 @@ const getNewButtonsComponent = (projectIndex, todoIndex) => {
     editBtn.setAttribute('type', 'button');
     editBtn.textContent = 'Edit';
     editBtn.addEventListener('click', () => {
+        updateTODOModal.showModal();
+        const todo = TODOHandler.getTODO(projectIndex, todoIndex);
+        TODOForm.fillUpdateTODOFormWith(todo);
     });
 
     const deleteBtn = document.createElement('button');

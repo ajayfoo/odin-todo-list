@@ -1,10 +1,14 @@
 
 const createProjectDialog = document.querySelector('#create-project-modal');
-const createTODODialog = document.querySelector('#create-todo-modal');
 const createProjectBtn = document.querySelector('#create-project');
-const createTODOBtn = document.querySelector('#create-todo');
 const closeCreateProjectDialogBtn = document.querySelector('#create-project-modal>form>.close-modal');
+
+const createTODODialog = document.querySelector('#create-todo-modal');
+const createTODOBtn = document.querySelector('#create-todo');
 const closeCreateTODODialogBtn = document.querySelector('#create-todo-modal>form>.close-modal');
+
+const updateTODOModal = document.querySelector('#update-todo-modal');
+const closeUpdateTODOModalBtn = document.querySelector('#update-todo-modal>form>.close-modal');
 
 const closeCreateProjectDialog = () => {
     createProjectDialog.close();
@@ -24,6 +28,10 @@ const setupEventListeners = () => {
         createTODODialog.showModal();
     });
     closeCreateTODODialogBtn.addEventListener('click', closeCreateTODODialog);
+
+    closeUpdateTODOModalBtn.addEventListener('click', () => {
+        updateTODOModal.close();
+    });
 };
 
 export { setupEventListeners, closeCreateProjectDialog, closeCreateTODODialog };

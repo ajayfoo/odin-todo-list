@@ -4,6 +4,7 @@ import * as ProjectModel from "../model/project";
 
 const todoCreateProjectSelectElement = document.querySelector("#create-todo-project-name");
 const projectSelectEle = document.querySelector("#select-project");
+const updateProjectSelectEle = document.querySelector('#update-todo-project-name');
 const allProjectsEle = document.querySelector("#all-projects");
 
 
@@ -16,6 +17,9 @@ const createProject = (name) => {
         ProjectComponent.getNewProjectOptionElement(name, projectIndex)
     );
     todoCreateProjectSelectElement.appendChild(
+        ProjectComponent.getNewProjectOptionElement(name, projectIndex)
+    );
+    updateProjectSelectEle.appendChild(
         ProjectComponent.getNewProjectOptionElement(name, projectIndex)
     );
 
@@ -59,6 +63,8 @@ const deleteTODOOfProject = (projectIndex, todoIndex) => {
     ProjectComponent.updateProjectComponentTODOCount(projectIndex, project.getNumOfTODOs());
 };
 
+const getProject = (projectIndex) => ProjectModel.getProject(projectIndex);
+
 createProject('Default');
 
-export { createProject, changeCurrentProject, setupEventListeners, unsetProjectSelection, addTODOToProject, deleteTODOOfProject };
+export { getProject, createProject, changeCurrentProject, setupEventListeners, unsetProjectSelection, addTODOToProject, deleteTODOOfProject };
