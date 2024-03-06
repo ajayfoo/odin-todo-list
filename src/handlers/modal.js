@@ -1,10 +1,10 @@
 
 const createProjectDialog = document.querySelector('#create-project-modal');
-const createTODODialog = document.querySelector('#create-todo+dialog');
+const createTODODialog = document.querySelector('#create-todo-modal');
 const createProjectBtn = document.querySelector('#create-project');
 const createTODOBtn = document.querySelector('#create-todo');
 const closeCreateProjectDialogBtn = document.querySelector('#create-project-modal>form>.close-modal');
-const closeCreateTODODialogBtn = document.querySelector('#create-todo+dialog>form>.close-modal');
+const closeCreateTODODialogBtn = document.querySelector('#create-todo-modal>form>.close-modal');
 
 const closeCreateProjectDialog = () => {
     createProjectDialog.close();

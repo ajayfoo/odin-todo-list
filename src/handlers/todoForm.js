@@ -1,6 +1,6 @@
 import * as TodoHandler from './todo';
 
-const todoForm = document.querySelector('#create-todo+dialog>form');
+const todoForm = document.querySelector('#create-todo-modal>form');
 const todoNameEle = document.querySelector('#todo-name');
 const projectSelectEle = document.querySelector('#create-todo-project-name');
 const todoPriorityEle = document.querySelector('#create-todo-priority');
