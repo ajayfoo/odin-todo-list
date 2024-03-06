@@ -16,8 +16,10 @@ const deleteTODO = (projectIndex, todoIndex) => {
     ProjectHandler.deleteTODOOfProject(projectIndex, todoIndex);
 };
 
-createTODO('Art Work', 0, 1, 'document.querySelector("#select-project")', new Date());
-createTODO('Music', 0, 2, 'document.querySelector("#select-project")', new Date());
-createTODO('Study', 0, 3, 'document.querySelector("#select-project")', new Date());
+const createDummyTODOs = () => {
+    createTODO('Art Work', 0, 1, 'document.querySelector("#select-project")', new Date());
+    createTODO('Music', 0, 2, 'document.querySelector("#select-project")', new Date());
+    createTODO('Study', 0, 3, 'document.querySelector("#select-project")', new Date());
+};
 
-export { createTODO, deleteTODO };
+export { createTODO, deleteTODO, createDummyTODOs };
