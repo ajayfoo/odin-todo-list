@@ -1,4 +1,4 @@
-import * as TodoHandler from './todo';
+import * as TODOHandler from './todo';
 import * as DateFns from 'date-fns';
 
 const todoForm = document.querySelector('#create-todo-modal>form');
@@ -8,6 +8,8 @@ const todoPriorityEle = document.querySelector('#create-todo-priority');
 const todoDescriptionEle = document.querySelector('#create-todo-description');
 const todoDueDateEle = document.querySelector('#create-todo-due-date');
 
+const updateTODOModal = document.querySelector('#update-todo-modal');
+const updateTODOForm = document.querySelector('#update-todo-modal>form');
 const updateTodoNameEle = document.querySelector('#todo-new-name');
 const updateProjectSelectEle = document.querySelector('#update-todo-project-name');
 const updateTodoPriorityEle = document.querySelector('#update-todo-priority');
@@ -24,7 +26,7 @@ const fillUpdateTODOFormWith = (todo, projectIndex) => {
 
 const setupEventListeners = () => {
     todoForm.addEventListener('submit', () => {
-        TodoHandler.createTODO(
+        TODOHandler.createTODO(
             todoNameEle.value,
             projectSelectEle.value,
             todoPriorityEle.value,
@@ -32,6 +34,17 @@ const setupEventListeners = () => {
             todoDueDateEle.value,
         );
         todoForm.reset();
+    });
+    updateTODOForm.addEventListener('submit', () => {
+        const todoIndex = updateTODOModal.dataset.todoIndex;
+        const updatedTODO = {
+            name: updateTodoNameEle.value,
+            priority: updateTodoPriorityEle.value,
+            description: updateTodoDescriptionEle.value,
+            dueDate: updateTodoDueDateEle.value,
+        };
+        TODOHandler.updateTODO(projectSelectEle.value, todoIndex, updatedTODO);
+        updateTODOForm.reset();
     });
 };
 

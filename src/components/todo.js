@@ -1,9 +1,9 @@
 import * as TODOHandler from '../handlers/todo';
 import * as TODOForm from '../handlers/todoForm';
 import * as DateFns from 'date-fns';
+import * as ContainerComponent from './container';
 
 const updateTODOModal = document.querySelector('#update-todo-modal');
-const updateTODOForm = updateTODOModal.querySelector('form');
 const toggleExpansion = (todo) => {
     const description = todo.querySelector('.description');
     const buttons = todo.querySelector('.buttons');
@@ -18,6 +18,26 @@ const getClassForPriority = (priority) => {
         case 2: return 'chore';
         default: return 'important';
     }
+};
+
+const setStyleClassForPriority = (todoComponent, priority) => {
+    priority = Number(priority);
+    todoComponent.classList.remove('hobby');
+    todoComponent.classList.remove('chore');
+    todoComponent.classList.remove('important');
+    let styleClass = 'important';
+    switch (priority) {
+        case 1: {
+            styleClass = 'hobby';
+            break;
+        }
+        case 2: {
+            styleClass = 'chore';
+            break;
+        }
+        default: break;
+    }
+    todoComponent.classList.add(styleClass);
 };
 
 const getNewHeaderComponent = (todo) => {
@@ -96,6 +116,7 @@ const getNewButtonsComponent = (projectIndex, todoIndex) => {
     editBtn.setAttribute('type', 'button');
     editBtn.textContent = 'Edit';
     editBtn.addEventListener('click', () => {
+        updateTODOModal.setAttribute('data-todo-index', todoIndex);
         updateTODOModal.showModal();
         const todo = TODOHandler.getTODO(projectIndex, todoIndex);
         TODOForm.fillUpdateTODOFormWith(todo);
@@ -129,4 +150,22 @@ const getNewTODOComponent = (projectIndex, todo, todoIndex) => {
     return todoComponent;
 };
 
-export { getNewTODOComponent };
+const updateTODOComponent = (projectIndex, todoIndex, todo) => {
+    const todoContainer = ContainerComponent.getTODOContainerComponent(projectIndex);
+    const todoComponent = todoContainer.querySelector(`div[data-index="${todoIndex}"]`);
+
+    const priority = todoComponent.querySelector('.priority');
+    priority.textContent = todo.priority;
+    setStyleClassForPriority(todoComponent, todo.priority);
+
+    const name = todoComponent.querySelector('.title');
+    name.textContent = todo.name;
+
+    const dueDate = todoComponent.querySelector('.due-date');
+    dueDate.textContent = DateFns.format(todo.dueDate, 'd.L.yy');
+
+    const description = todoComponent.querySelector('.description');
+    description.textContent = todo.description;
+};
+
+export { getNewTODOComponent, updateTODOComponent };

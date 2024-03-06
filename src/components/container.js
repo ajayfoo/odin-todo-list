@@ -16,4 +16,8 @@ const changeContainerTo = (projectIndex) => {
     body.replaceChild(todoContainerComponents[projectIndex], currentContainer);
 };
 
-export { addContainerComponent, addTODOComponentToContainer, changeContainerTo };
+const getTODOContainerComponent = (projectIndex) => {
+    return todoContainerComponents[projectIndex];
+}
+
+export { addContainerComponent, addTODOComponentToContainer, changeContainerTo, getTODOContainerComponent };
