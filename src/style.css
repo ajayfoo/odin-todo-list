@@ -286,6 +286,32 @@ body>.container>.todo>header>.twin>.title {
     padding-left: 0.5em;
 }
 
+body>.container>.todo>header>input[type="checkbox"] {
+    width: 1.5em;
+    height: 1.5em;
+    appearance: none;
+    position: relative;
+    border: 1px solid black;
+    border-radius: 1em;
+    color: black;
+    background-color: white;
+}
+
+body>.container>.todo>header>input[type="checkbox"]::after {
+    background-color: unset;
+    content: url('images/tick.svg');
+    position: absolute;
+    width: 2.5em;
+    height: 2em;
+    top: -12px;
+    right: -13px;
+    visibility: hidden;
+}
+
+body>.container>.todo>header>input[type="checkbox"]:checked::after {
+    visibility: visible;
+}
+
 body>.container>.todo>.description {
     margin: 1em 0;
     padding: 0.5em;

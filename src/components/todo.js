@@ -57,8 +57,15 @@ const getNewHeaderComponent = (todo) => {
     dueDate.classList.add('due-date');
     dueDate.textContent = DateFns.format(todo.getDueDate(), 'd.L.yy');
 
+    const checkbox = document.createElement('input');
+    checkbox.type = 'checkbox';
+    checkbox.classList.add('check');
+    checkbox.addEventListener('click', (event) => {
+        event.stopImmediatePropagation();
+    });
+
     const header = document.createElement('header');
-    header.append(twin, dueDate);
+    header.append(twin, dueDate, checkbox);
     header.addEventListener('click', () => {
         toggleExpansion(header.parentElement);
     });

@@ -3,7 +3,9 @@ const getNewTODO = (name, priority, description, dueDate) => {
     const getPriority = () => priority;
     const getDescription = () => description;
     const getDueDate = () => dueDate;
-    return { getName, getPriority, getDescription, getDueDate };
+    let completionStatus = false;
+    const isComplete = (complete) => completionStatus = complete;
+    return { getName, getPriority, getDescription, getDueDate, isComplete };
 };
 
 export { getNewTODO };
