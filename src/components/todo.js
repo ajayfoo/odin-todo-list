@@ -40,7 +40,7 @@ const setStyleClassForPriority = (todoComponent, priority) => {
     todoComponent.classList.add(styleClass);
 };
 
-const getNewHeaderComponent = (todo) => {
+const getNewHeaderComponent = (todo, projectIndex, todoIndex) => {
     const priority = document.createElement('span');
     priority.classList.add('priority');
     priority.textContent = todo.getPriority();
@@ -62,6 +62,7 @@ const getNewHeaderComponent = (todo) => {
     checkbox.classList.add('check');
     checkbox.addEventListener('click', (event) => {
         event.stopImmediatePropagation();
+        TODOHandler.checkTODO(projectIndex, todoIndex, checkbox.checked);
     });
 
     const header = document.createElement('header');
@@ -149,7 +150,7 @@ const getNewTODOComponent = (projectIndex, todo, todoIndex) => {
     );
     todoComponent.setAttribute('data-index', todoIndex);
 
-    const header = getNewHeaderComponent(todo);
+    const header = getNewHeaderComponent(todo, projectIndex, todoIndex);
     const description = getNewDescriptionComponent(todo.getDescription());
     const buttons = getNewButtonsComponent(projectIndex, todoIndex)
 
@@ -174,5 +175,10 @@ const updateTODOComponent = (projectIndex, todoIndex, todo) => {
     const description = todoComponent.querySelector('.description');
     description.textContent = todo.description;
 };
+const updateTODOComponentCompletionStatus = (projectIndex, todoIndex) => {
+    const todoContainer = ContainerComponent.getTODOContainerComponent(projectIndex);
+    const todoComponent = todoContainer.querySelector(`div[data-index="${todoIndex}"]`);
+    todoComponent.classList.toggle('complete');
+};
 
-export { getNewTODOComponent, updateTODOComponent };
+export { getNewTODOComponent, updateTODOComponent, updateTODOComponentCompletionStatus };

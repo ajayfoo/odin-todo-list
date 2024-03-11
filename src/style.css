@@ -312,6 +312,10 @@ body>.container>.todo>header>input[type="checkbox"]:checked::after {
     visibility: visible;
 }
 
+body>.container>.todo.complete {
+    outline: 2px solid rgb(0, 150, 0);
+}
+
 body>.container>.todo>.description {
     margin: 1em 0;
     padding: 0.5em;

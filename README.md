@@ -3,5 +3,5 @@
 - [X] Add TO-DOs
 - [X] Edit TO-DOs
 - [X] View All Projects
-- [ ] Mark TO-DO as complete
+- [X] Mark TO-DO as complete
 - [ ] Check list

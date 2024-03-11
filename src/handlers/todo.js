@@ -22,6 +22,12 @@ const updateTODO = (projectIndex, todoIndex, updatedTODO) => {
     TODOComponent.updateTODOComponent(projectIndex, todoIndex, updatedTODO);
 };
 
+const checkTODO = (projectIndex, todoIndex, completionStatus) => {
+    ProjectHandler.getProject(projectIndex)
+        .getTODOs()[todoIndex].isComplete(completionStatus);
+    TODOComponent.updateTODOComponentCompletionStatus(projectIndex, todoIndex);
+};
+
 const deleteTODO = (projectIndex, todoIndex) => {
     ProjectHandler.deleteTODOOfProject(projectIndex, todoIndex);
 };
@@ -37,4 +43,4 @@ const createDummyTODOs = () => {
     createTODO('Study', 0, 3, 'document.querySelector("#select-project")', new Date());
 };
 
-export { createTODO, deleteTODO, createDummyTODOs, getTODO, updateTODO };
+export { createTODO, deleteTODO, createDummyTODOs, getTODO, updateTODO, checkTODO };
