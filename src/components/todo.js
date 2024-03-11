@@ -40,7 +40,7 @@ const setStyleClassForPriority = (todoComponent, priority) => {
     todoComponent.classList.add(styleClass);
 };
 
-const getNewHeaderComponent = (todo, projectIndex, todoIndex) => {
+const getNewHeaderComponent = (todo, projectIndex, todoId) => {
     const priority = document.createElement('span');
     priority.classList.add('priority');
     priority.textContent = todo.getPriority();
@@ -62,7 +62,7 @@ const getNewHeaderComponent = (todo, projectIndex, todoIndex) => {
     checkbox.classList.add('check');
     checkbox.addEventListener('click', (event) => {
         event.stopImmediatePropagation();
-        TODOHandler.checkTODO(projectIndex, todoIndex, checkbox.checked);
+        TODOHandler.checkTODO(projectIndex, todoId, checkbox.checked);
     });
 
     const header = document.createElement('header');
@@ -115,7 +115,7 @@ const getNewDescriptionComponent = (descriptionTxt) => {
     return description;
 };
 
-const getNewButtonsComponent = (projectIndex, todoIndex) => {
+const getNewButtonsComponent = (projectIndex, todoId) => {
     const buttons = document.createElement('div');
     buttons.classList.add('buttons');
     buttons.classList.add('hide');
@@ -124,9 +124,9 @@ const getNewButtonsComponent = (projectIndex, todoIndex) => {
     editBtn.setAttribute('type', 'button');
     editBtn.textContent = 'Edit';
     editBtn.addEventListener('click', () => {
-        updateTODOModal.setAttribute('data-todo-index', todoIndex);
+        updateTODOModal.setAttribute('data-todo-id', todoId);
         updateTODOModal.showModal();
-        const todo = TODOHandler.getTODO(projectIndex, todoIndex);
+        const todo = TODOHandler.getTODO(projectIndex, todoId);
         TODOForm.fillUpdateTODOFormWith(todo);
     });
 
@@ -135,32 +135,32 @@ const getNewButtonsComponent = (projectIndex, todoIndex) => {
     deleteBtn.textContent = 'Delete';
     deleteBtn.addEventListener('click', () => {
         buttons.parentElement.remove();
-        TODOHandler.deleteTODO(projectIndex, todoIndex);
+        TODOHandler.deleteTODO(projectIndex, todoId);
     });
 
     buttons.append(editBtn, deleteBtn);
     return buttons;
 };
 
-const getNewTODOComponent = (projectIndex, todo, todoIndex) => {
+const getNewTODOComponent = (projectIndex, todo) => {
     const todoComponent = document.createElement('div');
     todoComponent.classList.add('todo');
     todoComponent.classList.add(
         getClassForPriority(todo.getPriority())
     );
-    todoComponent.setAttribute('data-index', todoIndex);
+    todoComponent.setAttribute('data-id', todo.getId());
 
-    const header = getNewHeaderComponent(todo, projectIndex, todoIndex);
+    const header = getNewHeaderComponent(todo, projectIndex, todo.getId());
     const description = getNewDescriptionComponent(todo.getDescription());
-    const buttons = getNewButtonsComponent(projectIndex, todoIndex)
+    const buttons = getNewButtonsComponent(projectIndex, todo.getId())
 
     todoComponent.append(header, description, buttons);
     return todoComponent;
 };
 
-const updateTODOComponent = (projectIndex, todoIndex, todo) => {
+const updateTODOComponent = (projectIndex, todoId, todo) => {
     const todoContainer = ContainerComponent.getTODOContainerComponent(projectIndex);
-    const todoComponent = todoContainer.querySelector(`div[data-index="${todoIndex}"]`);
+    const todoComponent = todoContainer.querySelector(`div[data-id="${todoId}"]`);
 
     const priority = todoComponent.querySelector('.priority');
     priority.textContent = todo.priority;
@@ -175,9 +175,9 @@ const updateTODOComponent = (projectIndex, todoIndex, todo) => {
     const description = todoComponent.querySelector('.description');
     description.textContent = todo.description;
 };
-const updateTODOComponentCompletionStatus = (projectIndex, todoIndex) => {
+const updateTODOComponentCompletionStatus = (projectIndex, todoId) => {
     const todoContainer = ContainerComponent.getTODOContainerComponent(projectIndex);
-    const todoComponent = todoContainer.querySelector(`div[data-index="${todoIndex}"]`);
+    const todoComponent = todoContainer.querySelector(`div[data-id="${todoId}"]`);
     todoComponent.classList.toggle('complete');
 };
 

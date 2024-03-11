@@ -2,23 +2,20 @@ const projects = [];
 
 const getNewProject = (name) => {
     const getName = () => name;
-    const TODOs = [];
+    const TODOs = {};
     const addTODO = (todo) => {
-        TODOs.push(todo);
+        TODOs[todo.getId()] = todo;
     };
-    const removeTODO = (index) => {
-        TODOs[index] = null;
+    const removeTODO = (id) => {
+        delete TODOs[id];
     };
     const getTODOs = () => TODOs;
-    const getNumOfTODOs = () => TODOs.reduce((acc, curr) => {
-        if (curr != null) ++acc;
-        return acc;
-    }, 0);
+    const getNumOfTODOs = () => Object.keys(TODOs).length;
     return { getName, addTODO, getTODOs, removeTODO, getNumOfTODOs };
 };
 
-const getProject = (index) => {
-    return projects[index];
+const getProject = (id) => {
+    return projects[id];
 };
 
 const addProject = (project) => {

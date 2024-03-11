@@ -3,38 +3,42 @@ import * as TODOModel from '../model/todo';
 import * as TODOComponent from '../components/todo';
 import * as ContainerComponent from '../components/container'
 
+
+const getNewId = () => Math.random().toString(36).slice(2);
+
 const createTODO = (name, projectIndex, priority, description, dueDate) => {
-    const todo = TODOModel.getNewTODO(name, priority, description, dueDate);
-    const todoIndex = ProjectHandler.addTODOToProject(todo, projectIndex);
+    const todo = TODOModel.getNewTODO(getNewId(), name, priority, description, dueDate);
+    ProjectHandler.addTODOToProject(todo, projectIndex);
     ContainerComponent.addTODOComponentToContainer(projectIndex,
-        TODOComponent.getNewTODOComponent(projectIndex, todo, todoIndex)
+        TODOComponent.getNewTODOComponent(projectIndex, todo)
     );
 };
 
-const updateTODO = (projectIndex, todoIndex, updatedTODO) => {
+const updateTODO = (projectIndex, todoId, updatedTODO) => {
     ProjectHandler.getProject(projectIndex)
-        .getTODOs()[todoIndex] = TODOModel.getNewTODO(
+        .getTODOs()[todoId] = TODOModel.getNewTODO(
+            todoId,
             updatedTODO.name,
             updatedTODO.priority,
             updatedTODO.description,
             updatedTODO.dueDate
         );
-    TODOComponent.updateTODOComponent(projectIndex, todoIndex, updatedTODO);
+    TODOComponent.updateTODOComponent(projectIndex, todoId, updatedTODO);
 };
 
-const checkTODO = (projectIndex, todoIndex, completionStatus) => {
+const checkTODO = (projectIndex, todoId, completionStatus) => {
     ProjectHandler.getProject(projectIndex)
-        .getTODOs()[todoIndex].isComplete(completionStatus);
-    TODOComponent.updateTODOComponentCompletionStatus(projectIndex, todoIndex);
+        .getTODOs()[todoId].isComplete(completionStatus);
+    TODOComponent.updateTODOComponentCompletionStatus(projectIndex, todoId);
 };
 
-const deleteTODO = (projectIndex, todoIndex) => {
-    ProjectHandler.deleteTODOOfProject(projectIndex, todoIndex);
+const deleteTODO = (projectIndex, todoId) => {
+    ProjectHandler.deleteTODOOfProject(projectIndex, todoId);
 };
 
-const getTODO = (projectIndex, todoIndex) => {
+const getTODO = (projectIndex, todoId) => {
     const project = ProjectHandler.getProject(projectIndex);
-    return project.getTODOs()[todoIndex];
+    return project.getTODOs()[todoId];
 };
 
 const createDummyTODOs = () => {
@@ -43,4 +47,4 @@ const createDummyTODOs = () => {
     createTODO('Study', 0, 3, 'document.querySelector("#select-project")', new Date());
 };
 
-export { createTODO, deleteTODO, createDummyTODOs, getTODO, updateTODO, checkTODO };
+export { getNewId, createTODO, deleteTODO, createDummyTODOs, getTODO, updateTODO, checkTODO };

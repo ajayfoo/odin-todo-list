@@ -24,6 +24,7 @@ const fillUpdateTODOFormWith = (todo, projectIndex) => {
     updateTodoDueDateEle.value = DateFns.format(todo.getDueDate(), 'yyyy-MM-dd');
 };
 
+
 const setupEventListeners = () => {
     todoForm.addEventListener('submit', () => {
         TODOHandler.createTODO(
@@ -36,14 +37,14 @@ const setupEventListeners = () => {
         todoForm.reset();
     });
     updateTODOForm.addEventListener('submit', () => {
-        const todoIndex = updateTODOModal.dataset.todoIndex;
+        const todoId = updateTODOModal.dataset.todoId;
         const updatedTODO = {
             name: updateTodoNameEle.value,
             priority: updateTodoPriorityEle.value,
             description: updateTodoDescriptionEle.value,
             dueDate: updateTodoDueDateEle.value,
         };
-        TODOHandler.updateTODO(projectSelectEle.value, todoIndex, updatedTODO);
+        TODOHandler.updateTODO(projectSelectEle.value, todoId, updatedTODO);
         updateTODOForm.reset();
     });
 };

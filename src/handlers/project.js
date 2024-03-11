@@ -54,12 +54,11 @@ const addTODOToProject = (todo, projectIndex) => {
     const project = ProjectModel.getProject(projectIndex);
     project.addTODO(todo);
     ProjectComponent.updateProjectComponentTODOCount(projectIndex, project.getNumOfTODOs());
-    return project.getNumOfTODOs() - 1;
 };
 
-const deleteTODOOfProject = (projectIndex, todoIndex) => {
+const deleteTODOOfProject = (projectIndex, todoId) => {
     const project = ProjectModel.getProject(projectIndex);
-    project.removeTODO(todoIndex);
+    delete project.removeTODO(todoId);
     ProjectComponent.updateProjectComponentTODOCount(projectIndex, project.getNumOfTODOs());
 };
 

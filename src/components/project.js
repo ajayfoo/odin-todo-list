@@ -27,7 +27,7 @@ const getNewProjectComponent = (project, projectIndex) => {
 
     const numOfTODOs = document.createElement('span');
     numOfTODOs.classList.add('num-of-todos');
-    numOfTODOs.textContent = project.getTODOs().length + ' TO-DO(s)';
+    numOfTODOs.textContent = project.getNumOfTODOs() + ' TO-DO(s)';
     projectComponent.append(name, numOfTODOs);
     return projectComponent;
 };
