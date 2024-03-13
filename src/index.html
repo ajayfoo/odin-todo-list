@@ -53,6 +53,14 @@
 					<select required id="create-todo-project-name">
 					</select>
 				</p>
+				<p class="field todo-description">
+					<label for="create-todo-description">Description</label>
+					<textarea required minlength="3" maxlength="100" name="todo_description"
+						id="create-todo-description" rows="3"></textarea>
+				</p>
+				<p class="field todo-tasklist">
+					tasklist
+				</p>
 				<p class="field todo-priority">
 					<label for="create-todo-priority">Priority</label>
 					<select required id="create-todo-priority">
@@ -60,11 +68,6 @@
 						<option value="2">2 - Chore</option>
 						<option value="3">3 - Important</option>
 					</select>
-				</p>
-				<p class="field todo-description">
-					<label for="create-todo-description">Description</label>
-					<textarea required minlength="3" maxlength="100" name="todo_description" id="create-todo-description"
-						rows="3"></textarea>
 				</p>
 				<p class="field todo-due-date">
 					<label for="create-todo-due-date">Due Date</label>
@@ -103,8 +106,11 @@
 				</p>
 				<p class="field todo-description">
 					<label for="update-todo-description">Description</label>
-					<textarea required minlength="3" maxlength="100" name="todo_new_description" id="update-todo-description"
-						rows="3"></textarea>
+					<textarea required minlength="3" maxlength="100" name="todo_new_description"
+						id="update-todo-description" rows="3"></textarea>
+				</p>
+				<p class="field todo-tasklist">
+					tasklist
 				</p>
 				<p class="field todo-due-date">
 					<label for="update-todo-due-date">Due Date</label>
