@@ -2,127 +2,127 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TO-DO List</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>TO-DO List</title>
 <script defer src="bundle.js"></script></head>
 
 <body>
-    <header>
-        <div class="toolbar">
-            <span>
-                <button id="create-project" type="button">Create Project</button>
-                <button id="create-todo" type="button">Create TO-DO</button>
-            </span>
-            <span>
-                <label for="select-project">Select Project</label>
-                <select id="select-project" name="project">
-                </select>
-            </span>
-            <button id="all-projects" type="button">All Projects</button>
-        </div>
-    </header>
-    <div class="container"></div>
-    <div class="modals">
-        <dialog id="create-project-modal">
-            <form method="dialog">
-                <p class="field">
-                    <label for="project-name">Project Name</label>
-                    <input minlength="3" maxlength="15" required type="text" name="project_name" id="project-name">
-                </p>
-                <div class="create-form-buttons">
-                    <button>Create</button>
-                    <button>Create & Go</button>
-                </div>
-                <button class="close-modal" aria-label="close" type="button">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="5 5 14 14">
-                        <path
-                            d="M19,6.41L17.59,5L12,10.59L6.41,5L5,6.41L10.59,12L5,17.59L6.41,19L12,13.41L17.59,19L19,17.59L13.41,12L19,6.41Z" />
-                    </svg>
-                </button>
-            </form>
-        </dialog>
-        <dialog id="create-todo-modal">
-            <form method="dialog">
-                <p class="field">
-                    <label for="todo-name">TO-DO Name</label>
-                    <input minlength="3" maxlength="15" required type="text" name="todo_name" id="todo-name">
-                </p>
-                <p class="field">
-                    <label for="create-todo-project-name">Project Name</label>
-                    <select required id="create-todo-project-name">
-                    </select>
-                </p>
-                <p class="field">
-                    <label for="create-todo-priority">Priority</label>
-                    <select required id="create-todo-priority">
-                        <option value="1">1 - Hobby</option>
-                        <option value="2">2 - Chore</option>
-                        <option value="3">3 - Important</option>
-                    </select>
-                </p>
-                <p class="field">
-                    <label for="create-todo-description">Description</label>
-                    <textarea required minlength="3" maxlength="100" name="todo_description"
-                        id="create-todo-description" rows="3"></textarea>
-                </p>
-                <p class="field">
-                    <label for="create-todo-due-date">Due Date</label>
-                    <input required type="date" id="create-todo-due-date">
-                </p>
-                <div class="create-form-buttons">
-                    <button>Create</button>
-                    <button>Create & Go</button>
-                </div>
-                <button class="close-modal" aria-label="close" type="button">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="5 5 14 14">
-                        <path
-                            d="M19,6.41L17.59,5L12,10.59L6.41,5L5,6.41L10.59,12L5,17.59L6.41,19L12,13.41L17.59,19L19,17.59L13.41,12L19,6.41Z" />
-                    </svg>
-                </button>
-            </form>
-        </dialog>
-        <dialog id="update-todo-modal">
-            <form method="dialog">
-                <p class="field">
-                    <label for="todo-new-name">TO-DO Name</label>
-                    <input minlength="3" maxlength="15" required type="text" name="todo_new_name" id="todo-new-name">
-                </p>
-                <p class="field">
-                    <label for="update-todo-project-name">Project Name</label>
-                    <select required id="update-todo-project-name">
-                    </select>
-                </p>
-                <p class="field">
-                    <label for="update-todo-priority">Priority</label>
-                    <select required id="update-todo-priority">
-                        <option value="1">1 - Hobby</option>
-                        <option value="2">2 - Chore</option>
-                        <option value="3">3 - Important</option>
-                    </select>
-                </p>
-                <p class="field">
-                    <label for="update-todo-description">Description</label>
-                    <textarea required minlength="3" maxlength="100" name="todo_new_description"
-                        id="update-todo-description" rows="3"></textarea>
-                </p>
-                <p class="field">
-                    <label for="update-todo-due-date">Due Date</label>
-                    <input required type="date" id="update-todo-due-date">
-                </p>
-                <div class="create-form-buttons">
-                    <button>Update</button>
-                    <button>Update & Go</button>
-                </div>
-                <button class="close-modal" aria-label="close" type="button">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="5 5 14 14">
-                        <path
-                            d="M19,6.41L17.59,5L12,10.59L6.41,5L5,6.41L10.59,12L5,17.59L6.41,19L12,13.41L17.59,19L19,17.59L13.41,12L19,6.41Z" />
-                    </svg>
-                </button>
-            </form>
-        </dialog>
-    </div>
+	<header>
+		<div class="toolbar">
+			<span>
+				<button id="create-project" type="button">Create Project</button>
+				<button id="create-todo" type="button">Create TO-DO</button>
+			</span>
+			<span>
+				<label for="select-project">Select Project</label>
+				<select id="select-project" name="project">
+				</select>
+			</span>
+			<button id="all-projects" type="button">All Projects</button>
+		</div>
+	</header>
+	<div class="container"></div>
+	<div class="modals">
+		<dialog id="create-project-modal">
+			<form method="dialog">
+				<p class="field">
+					<label for="project-name">Project Name</label>
+					<input minlength="3" maxlength="15" required type="text" name="project_name" id="project-name">
+				</p>
+				<div class="form-action-buttons">
+					<button>Create</button>
+					<button>Create & Go</button>
+				</div>
+				<button class="close-modal" aria-label="close" type="button">
+					<svg xmlns="http://www.w3.org/2000/svg" viewBox="5 5 14 14">
+						<path
+							d="M19,6.41L17.59,5L12,10.59L6.41,5L5,6.41L10.59,12L5,17.59L6.41,19L12,13.41L17.59,19L19,17.59L13.41,12L19,6.41Z" />
+					</svg>
+				</button>
+			</form>
+		</dialog>
+		<dialog id="create-todo-modal" class="todo-modal">
+			<form method="dialog">
+				<p class="field todo-name">
+					<label for="todo-name">TO-DO Name</label>
+					<input minlength="3" maxlength="15" required type="text" name="todo_name" id="todo-name">
+				</p>
+				<p class="field todo-project-name">
+					<label for="create-todo-project-name">Project Name</label>
+					<select required id="create-todo-project-name">
+					</select>
+				</p>
+				<p class="field todo-priority">
+					<label for="create-todo-priority">Priority</label>
+					<select required id="create-todo-priority">
+						<option value="1">1 - Hobby</option>
+						<option value="2">2 - Chore</option>
+						<option value="3">3 - Important</option>
+					</select>
+				</p>
+				<p class="field todo-description">
+					<label for="create-todo-description">Description</label>
+					<textarea required minlength="3" maxlength="100" name="todo_description" id="create-todo-description"
+						rows="3"></textarea>
+				</p>
+				<p class="field todo-due-date">
+					<label for="create-todo-due-date">Due Date</label>
+					<input required type="date" id="create-todo-due-date">
+				</p>
+				<div class="form-action-buttons">
+					<button>Create</button>
+					<button>Create & Go</button>
+				</div>
+				<button class="close-modal" aria-label="close" type="button">
+					<svg xmlns="http://www.w3.org/2000/svg" viewBox="5 5 14 14">
+						<path
+							d="M19,6.41L17.59,5L12,10.59L6.41,5L5,6.41L10.59,12L5,17.59L6.41,19L12,13.41L17.59,19L19,17.59L13.41,12L19,6.41Z" />
+					</svg>
+				</button>
+			</form>
+		</dialog>
+		<dialog id="update-todo-modal" class="todo-modal">
+			<form method="dialog">
+				<p class="field todo-name">
+					<label for="todo-new-name">TO-DO Name</label>
+					<input minlength="3" maxlength="15" required type="text" name="todo_new_name" id="todo-new-name">
+				</p>
+				<p class="field todo-project-name">
+					<label for="update-todo-project-name">Project Name</label>
+					<select required id="update-todo-project-name">
+					</select>
+				</p>
+				<p class="field todo-priority">
+					<label for="update-todo-priority">Priority</label>
+					<select required id="update-todo-priority">
+						<option value="1">1 - Hobby</option>
+						<option value="2">2 - Chore</option>
+						<option value="3">3 - Important</option>
+					</select>
+				</p>
+				<p class="field todo-description">
+					<label for="update-todo-description">Description</label>
+					<textarea required minlength="3" maxlength="100" name="todo_new_description" id="update-todo-description"
+						rows="3"></textarea>
+				</p>
+				<p class="field todo-due-date">
+					<label for="update-todo-due-date">Due Date</label>
+					<input required type="date" id="update-todo-due-date">
+				</p>
+				<div class="form-action-buttons">
+					<button>Update</button>
+					<button>Update & Go</button>
+				</div>
+				<button class="close-modal" aria-label="close" type="button">
+					<svg xmlns="http://www.w3.org/2000/svg" viewBox="5 5 14 14">
+						<path
+							d="M19,6.41L17.59,5L12,10.59L6.41,5L5,6.41L10.59,12L5,17.59L6.41,19L12,13.41L17.59,19L19,17.59L13.41,12L19,6.41Z" />
+					</svg>
+				</button>
+			</form>
+		</dialog>
+	</div>
 </body>
 
 </html>
