@@ -87,24 +87,27 @@ body>header>.toolbar>span>select[name='project']:focus {
     background-color: rgb(0 0 0 / 0.5);
 }
 
-dialog>form>.field {
+.field {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
 }
 
-dialog>form>.field>*:last-child {
+.field>*:last-child {
     flex: 1;
 }
 
-dialog>form>.field>input,
-dialog>form>.field>select,
-dialog>form>.field>textarea {
+.field>input,
+.field>select,
+.field>textarea,
+.checklist-items>.item>input[type="text"] {
     padding: 0.2em;
     padding-left: 0.5ch;
     border: 2px solid rgb(0 0 0 / 0.5);
     width: 100%;
     background-color: rgb(0 255 255);
+    font-size: 1.1rem;
+    border-radius: 7px;
 }
 
 .form-action-buttons>button {
@@ -126,15 +129,12 @@ dialog>form>.field>textarea {
     background-color: rgb(70, 63, 57);
 }
 
-dialog>form>.field>input,
-dialog>form>.field>select,
-dialog>form>.field>textarea,
 .form-action-buttons>button {
     font-size: 1.1rem;
     border-radius: 7px;
 }
 
-dialog>form>.field>label {
+.field>label {
     margin-bottom: 0.25em;
 }
 
@@ -218,6 +218,34 @@ dialog>form * {
 
 .todo-due-date {
     grid-row: 4/6;
+}
+
+.todo-checklist {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+}
+
+.checklist-items {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.checklist-items>.item {
+    display: flex;
+    align-items: center;
+}
+
+.checklist-items>.item>input[type="checkbox"] {
+    appearance: none;
+    width: 1.7em;
+    height: 1.7em;
+    border: 1px solid rgb(0 0 0 / 0.3);
+    background-color: #9faabd;
+    border-radius: 50%;
+    margin-right: 1em;
+    flex-shrink: 0;
 }
 
 form>.form-action-buttons {
