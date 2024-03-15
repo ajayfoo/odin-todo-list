@@ -55,47 +55,28 @@
 				</p>
 				<p class="field todo-description">
 					<label for="create-todo-description">Description</label>
-					<textarea required minlength="3" maxlength="100" name="todo_description" id="create-todo-description"
-						rows="3"></textarea>
+					<textarea required minlength="3" maxlength="100" name="todo_description"
+						id="create-todo-description" rows="3"></textarea>
 				</p>
 				<div class="field todo-checklist">
-					<label>Checklist</label>
+					<p>Checklist</p>
 					<header>
 						<span>Done</span>
 						<span>Title</span>
 					</header>
 					<div class="checklist-items-wrapper">
-						<div class="checklist-items">
+						<div id="x" class="checklist-items">
 							<div class="item">
-								<input type="checkbox">
-								<input type="text">
-							</div>
-							<div class="item">
-								<input type="checkbox">
-								<input type="text">
-							</div>
-							<div class="item">
-								<input type="checkbox">
-								<input type="text">
-							</div>
-							<div class="item">
-								<input type="checkbox">
-								<input type="text">
-							</div>
-							<div class="item">
-								<input type="checkbox">
-								<input type="text">
-							</div>
-							<div class="item">
-								<input type="checkbox">
-								<input type="text">
+								<input id="todo-checklist-item-checkbox-dummy-id" type="checkbox">
+								<input id="todo-checklist-item-textbox-dummy-id" type="text">
 							</div>
 						</div>
 					</div>
-					<button class="add-checklist" type="button">
+					<button id="create-todo-add-new-checklist-item" class="add-checklist" type="button">
 						<svg xmlns="http://www.w3.org/2000/svg" viewBox="5 5 14 14">
 							<path fill="white"
-								d="M18 12.998h-5v5a1 1 0 0 1-2 0v-5H6a1 1 0 0 1 0-2h5v-5a1 1 0 0 1 2 0v5h5a1 1 0 0 1 0 2"></path>
+								d="M18 12.998h-5v5a1 1 0 0 1-2 0v-5H6a1 1 0 0 1 0-2h5v-5a1 1 0 0 1 2 0v5h5a1 1 0 0 1 0 2">
+							</path>
 						</svg>
 					</button>
 				</div>
@@ -144,8 +125,8 @@
 				</p>
 				<p class="field todo-description">
 					<label for="update-todo-description">Description</label>
-					<textarea required minlength="3" maxlength="100" name="todo_new_description" id="update-todo-description"
-						rows="3"></textarea>
+					<textarea required minlength="3" maxlength="100" name="todo_new_description"
+						id="update-todo-description" rows="3"></textarea>
 				</p>
 				<p class="field todo-checklist">
 					checklist

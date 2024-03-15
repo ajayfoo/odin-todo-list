@@ -1,4 +1,5 @@
-
+import * as TODOHandler from './todo';
+import * as TODOFormHandler from './todoForm';
 const createProjectDialog = document.querySelector('#create-project-modal');
 const createProjectBtn = document.querySelector('#create-project');
 const closeCreateProjectDialogBtn = document.querySelector('#create-project-modal>form>.close-modal');
@@ -26,6 +27,9 @@ const setupEventListeners = () => {
 
     createTODOBtn.addEventListener('click', () => {
         createTODODialog.showModal();
+        const todoId = TODOHandler.getNewId();
+        createTODODialog.setAttribute('data-id', todoId)
+        TODOFormHandler.setIDForChecklistItems(createTODODialog.parentElement, todoId);
     });
     closeCreateTODODialogBtn.addEventListener('click', closeCreateTODODialog);
 

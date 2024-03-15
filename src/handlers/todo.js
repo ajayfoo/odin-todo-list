@@ -6,8 +6,8 @@ import * as ContainerComponent from '../components/container'
 
 const getNewId = () => Math.random().toString(36).slice(2);
 
-const createTODO = (name, projectIndex, priority, description, dueDate) => {
-    const todo = TODOModel.getNewTODO(getNewId(), name, priority, description, dueDate);
+const createTODO = (id, name, projectIndex, priority, description, dueDate) => {
+    const todo = TODOModel.getNewTODO(id, name, priority, description, dueDate);
     ProjectHandler.addTODOToProject(todo, projectIndex);
     ContainerComponent.addTODOComponentToContainer(projectIndex,
         TODOComponent.getNewTODOComponent(projectIndex, todo)
@@ -42,9 +42,9 @@ const getTODO = (projectIndex, todoId) => {
 };
 
 const createDummyTODOs = () => {
-    createTODO('Art Work', 0, 1, 'document.querySelector("#select-project")', new Date());
-    createTODO('Music', 0, 2, 'document.querySelector("#select-project")', new Date());
-    createTODO('Study', 0, 3, 'document.querySelector("#select-project")', new Date());
+    createTODO('abc', 'Art Work', 0, 1, 'document.querySelector("#select-project")', new Date());
+    createTODO('cde', 'Music', 0, 2, 'document.querySelector("#select-project")', new Date());
+    createTODO('efg', 'Study', 0, 3, 'document.querySelector("#select-project")', new Date());
 };
 
 export { getNewId, createTODO, deleteTODO, createDummyTODOs, getTODO, updateTODO, checkTODO };

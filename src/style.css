@@ -93,7 +93,7 @@ body>header>.toolbar>span>select[name='project']:focus {
     align-items: flex-start;
 }
 
-.field>label:first-child {
+.field>:first-child {
     font-weight: bold;
 }
 

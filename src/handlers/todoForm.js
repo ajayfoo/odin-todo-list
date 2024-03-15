@@ -7,6 +7,7 @@ const projectSelectEle = document.querySelector('#create-todo-project-name');
 const todoPriorityEle = document.querySelector('#create-todo-priority');
 const todoDescriptionEle = document.querySelector('#create-todo-description');
 const todoDueDateEle = document.querySelector('#create-todo-due-date');
+const todoAddNewChecklistItemBtn = document.getElementById('#create-todo-add-new-checklist-item');
 
 const updateTODOModal = document.querySelector('#update-todo-modal');
 const updateTODOForm = document.querySelector('#update-todo-modal>form');
@@ -24,10 +25,25 @@ const fillUpdateTODOFormWith = (todo, projectIndex) => {
     updateTodoDueDateEle.value = DateFns.format(todo.getDueDate(), 'yyyy-MM-dd');
 };
 
+const setIDForChecklistItems = (todoFormEle, id) => {
+    const checklistItems = todoFormEle.querySelectorAll('.item');
+    console.log('setid', checklistItems.length)
+    for (let i = 0; i < checklistItems.length; ++i) {
+        console.log(checklistItems.item(i));
+        const checkbox = checklistItems.item(i).querySelector('input[type="checkbox"]');
+        const titleTextbox = checklistItems.item(i).querySelector('input[type="text"]');
+        checkbox.id = id + '-checkbox-' + i;
+        titleTextbox.id = id + '-textbox-' + i;
+        console.log(checkbox, titleTextbox)
+    }
+};
+
 
 const setupEventListeners = () => {
     todoForm.addEventListener('submit', () => {
+        const id = todoForm.parentElement.dataset.todoId;
         TODOHandler.createTODO(
+            id,
             todoNameEle.value,
             projectSelectEle.value,
             todoPriorityEle.value,
@@ -36,6 +52,11 @@ const setupEventListeners = () => {
         );
         todoForm.reset();
     });
+
+    todoAddNewChecklistItemBtn.addEventListener('click', () => {
+
+    });
+
     updateTODOForm.addEventListener('submit', () => {
         const todoId = updateTODOModal.dataset.todoId;
         const updatedTODO = {
@@ -49,4 +70,4 @@ const setupEventListeners = () => {
     });
 };
 
-export { setupEventListeners, fillUpdateTODOFormWith };
+export { setupEventListeners, fillUpdateTODOFormWith, setIDForChecklistItems };
