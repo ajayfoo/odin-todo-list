@@ -40,7 +40,11 @@ const getTODO = (projectIndex, todoId) => {
     const project = ProjectHandler.getProject(projectIndex);
     return project.getTODOs()[todoId];
 };
-
+const updateChecklistItem = (projectIndex, todoId, checklistItemIndex, updatedChecklistItem) => {
+    console.log(updatedChecklistItem);
+    const todo = getTODO(projectIndex, todoId);
+    todo.updateChecklistItem(checklistItemIndex, updatedChecklistItem);
+};
 const createDummyTODOs = () => {
     createTODO('abc',
         'Art Work',
@@ -52,4 +56,4 @@ const createDummyTODOs = () => {
     );
 };
 
-export { getNewId, createTODO, deleteTODO, createDummyTODOs, getTODO, updateTODO, checkTODO };
+export { getNewId, createTODO, deleteTODO, createDummyTODOs, getTODO, updateTODO, checkTODO, updateChecklistItem };

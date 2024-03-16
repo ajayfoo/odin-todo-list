@@ -118,26 +118,37 @@ const getNewDescriptionComponent = (descriptionTxt) => {
     return description;
 };
 
-const getNewChecklistComponent = (todoId) => {
+const getNewChecklistComponent = (projectIndex, todo) => {
     const checklistEle = document.createElement('div');
     checklistEle.classList.add('todo-checklist');
     const checklistItemsWrapper = document.createElement('div');
     checklistItemsWrapper.classList.add('checklist-items-wrapper');
     const checklistItemsEle = document.createElement('div');
     checklistItemsEle.classList.add('checklist-items');
-    const checklist = todoId.getChecklist();
-    checklist.forEach(item => {
+    const checklist = todo.getChecklist();
+    const itemIDPrefix = TODOHandler.getNewId();
+    const getChecklistItemIdFor = (i) => itemIDPrefix + '-checklist-item-' + i;
+    for (let i = 0; i < checklist.length; ++i) {
         const itemEle = document.createElement('div');
         itemEle.classList.add('item');
         const checkbox = document.createElement('input');
         checkbox.type = 'checkbox';
-        checkbox.checked = item.done;
+        checkbox.checked = checklist[i].done;
+        checkbox.id = getChecklistItemIdFor(i);
+        checkbox.addEventListener('change', () => {
+            const updatedChecklistItem = {
+                done: checklist[i].done,
+                title: checklist[i].title
+            };
+            TODOHandler.updateChecklistItem(projectIndex, todo.getId(), i, updatedChecklistItem);
+        });
 
-        const title = document.createElement('p');
-        title.textContent = item.title;
+        const title = document.createElement('label');
+        title.textContent = checklist[i].title;
+        title.setAttribute('for', getChecklistItemIdFor(i));
         itemEle.append(checkbox, title);
         checklistItemsEle.appendChild(itemEle);
-    });
+    }
     const MIN_NUM_OF_CHECKLIST_ITEMS_FOR_SCROLL = 4;
     if (checklist.length < MIN_NUM_OF_CHECKLIST_ITEMS_FOR_SCROLL) {
         checklistItemsWrapper.style.height = 'unset';
@@ -185,7 +196,7 @@ const getNewTODOComponent = (projectIndex, todo) => {
     const header = getNewHeaderComponent(todo, projectIndex, todo.getId());
     const description = getNewDescriptionComponent(todo.getDescription());
     const buttons = getNewButtonsComponent(projectIndex, todo.getId())
-    const checklist = getNewChecklistComponent(todo);
+    const checklist = getNewChecklistComponent(projectIndex, todo);
 
     todoComponent.append(header, description, checklist, buttons);
     return todoComponent;

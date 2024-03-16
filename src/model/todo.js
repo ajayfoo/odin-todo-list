@@ -10,8 +10,11 @@ const getNewTODO = (id, name, priority, description, dueDate, checklist) => {
 
     const getChecklist = () => checklist;
     const addChecklistItem = (done, title) => checklist.add({ done, title });
+    const updateChecklistItem = (index, updatedChecklistItem) => {
+        checklist[index] = updatedChecklistItem;
+    };
 
-    return { getId, getName, getPriority, getDescription, getDueDate, isComplete, getChecklist, addChecklistItem };
+    return { getId, getName, getPriority, getDescription, getDueDate, isComplete, getChecklist, addChecklistItem, updateChecklistItem };
 };
 
 export { getNewTODO };
