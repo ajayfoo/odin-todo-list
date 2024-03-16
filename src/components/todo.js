@@ -115,6 +115,24 @@ const getNewDescriptionComponent = (descriptionTxt) => {
     return description;
 };
 
+const getNewChecklistComponent = (todoId) => {
+    const checklistItemsEle = document.createElement('div');
+    checklistItemsEle.classList.add('checklist-items');
+    todoId.getChecklist().forEach(item => {
+        const itemEle = document.createElement('div');
+        itemEle.classList.add('item');
+        const checkbox = document.createElement('input');
+        checkbox.type = 'checkbox';
+        checkbox.checked = item.done;
+
+        const title = document.createElement('p');
+        title.textContent = item.title;
+        itemEle.append(checkbox, title);
+        checklistItemsEle.appendChild(itemEle);
+    });
+    return checklistItemsEle;
+};
+
 const getNewButtonsComponent = (projectIndex, todoId) => {
     const buttons = document.createElement('div');
     buttons.classList.add('buttons');
@@ -153,8 +171,9 @@ const getNewTODOComponent = (projectIndex, todo) => {
     const header = getNewHeaderComponent(todo, projectIndex, todo.getId());
     const description = getNewDescriptionComponent(todo.getDescription());
     const buttons = getNewButtonsComponent(projectIndex, todo.getId())
+    const checklist = getNewChecklistComponent(todo);
 
-    todoComponent.append(header, description, buttons);
+    todoComponent.append(header, description, buttons, checklist);
     return todoComponent;
 };
 
