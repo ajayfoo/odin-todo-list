@@ -477,10 +477,6 @@ body>.container>.todo>.todo-checklist {
     display: none;
 }
 
-body>.container>.todo>.todo-checklist>.checklist-items-wrapper {
-    height: unset;
-}
-
 body>.container>.todo.hobby {
     background-color: rgb(151, 194, 96);
     color: rgb(75, 34, 34);

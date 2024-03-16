@@ -125,7 +125,8 @@ const getNewChecklistComponent = (todoId) => {
     checklistItemsWrapper.classList.add('checklist-items-wrapper');
     const checklistItemsEle = document.createElement('div');
     checklistItemsEle.classList.add('checklist-items');
-    todoId.getChecklist().forEach(item => {
+    const checklist = todoId.getChecklist();
+    checklist.forEach(item => {
         const itemEle = document.createElement('div');
         itemEle.classList.add('item');
         const checkbox = document.createElement('input');
@@ -137,6 +138,10 @@ const getNewChecklistComponent = (todoId) => {
         itemEle.append(checkbox, title);
         checklistItemsEle.appendChild(itemEle);
     });
+    const MIN_NUM_OF_CHECKLIST_ITEMS_FOR_SCROLL = 4;
+    if (checklist.length < MIN_NUM_OF_CHECKLIST_ITEMS_FOR_SCROLL) {
+        checklistItemsWrapper.style.height = 'unset';
+    }
     checklistItemsWrapper.appendChild(checklistItemsEle);
     checklistEle.appendChild(checklistItemsWrapper);
     return checklistEle;
