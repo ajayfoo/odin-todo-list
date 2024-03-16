@@ -4,11 +4,14 @@ import * as DateFns from 'date-fns';
 import * as ContainerComponent from './container';
 
 const updateTODOModal = document.querySelector('#update-todo-modal');
-const toggleExpansion = (todo) => {
-    const description = todo.querySelector('.description');
-    const buttons = todo.querySelector('.buttons');
-    const computedStyleDisplay = window.getComputedStyle(description).display;
-    description.style.display = computedStyleDisplay === 'none' ? 'block' : 'none';
+const toggleExpansion = (todoEle) => {
+    const description = todoEle.querySelector('.description');
+    const checklist = todoEle.querySelector('.todo-checklist');
+    const buttons = todoEle.querySelector('.buttons');
+    const computedDescriptionDisplay = window.getComputedStyle(description).display;
+    description.style.display = computedDescriptionDisplay === 'none' ? 'block' : 'none';
+    const computedChecklistDisplay = window.getComputedStyle(checklist).display;
+    checklist.style.display = computedChecklistDisplay === 'none' ? 'flex' : 'none';
     buttons.classList.toggle('hide');
 };
 
@@ -116,6 +119,10 @@ const getNewDescriptionComponent = (descriptionTxt) => {
 };
 
 const getNewChecklistComponent = (todoId) => {
+    const checklistEle = document.createElement('div');
+    checklistEle.classList.add('todo-checklist');
+    const checklistItemsWrapper = document.createElement('div');
+    checklistItemsWrapper.classList.add('checklist-items-wrapper');
     const checklistItemsEle = document.createElement('div');
     checklistItemsEle.classList.add('checklist-items');
     todoId.getChecklist().forEach(item => {
@@ -130,7 +137,9 @@ const getNewChecklistComponent = (todoId) => {
         itemEle.append(checkbox, title);
         checklistItemsEle.appendChild(itemEle);
     });
-    return checklistItemsEle;
+    checklistItemsWrapper.appendChild(checklistItemsEle);
+    checklistEle.appendChild(checklistItemsWrapper);
+    return checklistEle;
 };
 
 const getNewButtonsComponent = (projectIndex, todoId) => {
@@ -173,7 +182,7 @@ const getNewTODOComponent = (projectIndex, todo) => {
     const buttons = getNewButtonsComponent(projectIndex, todo.getId())
     const checklist = getNewChecklistComponent(todo);
 
-    todoComponent.append(header, description, buttons, checklist);
+    todoComponent.append(header, description, checklist, buttons);
     return todoComponent;
 };
 

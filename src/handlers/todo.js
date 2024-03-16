@@ -48,7 +48,7 @@ const createDummyTODOs = () => {
         1,
         'document.querySelector("#select-project")',
         new Date(),
-        [{ done: false, title: 'dishes' }]
+        [{ done: true, title: 'dishes' }]
     );
 };
 
