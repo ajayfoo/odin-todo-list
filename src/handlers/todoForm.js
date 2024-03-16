@@ -1,5 +1,6 @@
 import * as TODOHandler from './todo';
 import * as DateFns from 'date-fns';
+import * as TODOFormComponent from '../components/todoForm';
 
 const todoForm = document.querySelector('#create-todo-modal>form');
 const todoNameEle = document.querySelector('#todo-name');
@@ -7,7 +8,8 @@ const projectSelectEle = document.querySelector('#create-todo-project-name');
 const todoPriorityEle = document.querySelector('#create-todo-priority');
 const todoDescriptionEle = document.querySelector('#create-todo-description');
 const todoDueDateEle = document.querySelector('#create-todo-due-date');
-const todoAddNewChecklistItemBtn = document.getElementById('#create-todo-add-new-checklist-item');
+const todoChecklistItems = document.getElementById('create-todo-checklist-items');
+const todoAddNewChecklistItemBtn = document.getElementById('create-todo-add-new-checklist-item');
 
 const updateTODOModal = document.querySelector('#update-todo-modal');
 const updateTODOForm = document.querySelector('#update-todo-modal>form');
@@ -54,7 +56,10 @@ const setupEventListeners = () => {
     });
 
     todoAddNewChecklistItemBtn.addEventListener('click', () => {
-
+        const id = todoForm.parentElement.dataset.todoId;
+        const newItemIndex = todoForm.querySelectorAll('.item').length;
+        const newChecklistItem = TODOFormComponent.getNewChecklistItem(id, newItemIndex);
+        todoChecklistItems.appendChild(newChecklistItem);
     });
 
     updateTODOForm.addEventListener('submit', () => {
