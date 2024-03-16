@@ -41,7 +41,6 @@ const getTODO = (projectIndex, todoId) => {
     return project.getTODOs()[todoId];
 };
 const updateChecklistItem = (projectIndex, todoId, checklistItemIndex, updatedChecklistItem) => {
-    console.log(updatedChecklistItem);
     const todo = getTODO(projectIndex, todoId);
     todo.updateChecklistItem(checklistItemIndex, updatedChecklistItem);
 };

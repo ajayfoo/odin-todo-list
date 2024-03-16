@@ -40,6 +40,15 @@ const setIDForChecklistItems = (todoFormEle, id) => {
     }
 };
 
+const resetForm = (form) => {
+    form.reset();
+    const checklistItemsEle = document.getElementById('create-todo-checklist-items');
+    const checklistItemEles = checklistItemsEle.querySelectorAll('.item');
+    for (let i = 1; i < checklistItemEles.length; ++i) {
+        checklistItemEles[i].remove();
+    }
+}
+
 const checklistAsArray = (checklistItemsEle) => {
     const checklistItems = checklistItemsEle.querySelectorAll('.item');
     const checklistArr = [];
@@ -64,7 +73,7 @@ const setupEventListeners = () => {
             todoDueDateEle.value,
             checklistAsArray(todoChecklistItemsEle),
         );
-        todoForm.reset();
+        resetForm(todoForm,);
     });
 
     todoAddNewChecklistItemBtn.addEventListener('click', () => {
