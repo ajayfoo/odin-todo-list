@@ -257,6 +257,7 @@ dialog>form * {
 .checklist-items>.item {
     display: flex;
     align-items: center;
+    padding: 0 0.05em;
 }
 
 .checklist-items>.item>input[type="checkbox"] {
@@ -284,6 +285,18 @@ dialog>form * {
 
 .checklist-items>.item>input[type="checkbox"]:checked:after {
     visibility: visible;
+}
+
+.checklist-items>.item>.delete {
+    width: 2em;
+    margin-left: 0.2em;
+    align-self: stretch;
+    border: none;
+    cursor: pointer;
+    background-image: url('images/trash.svg');
+    background-repeat: no-repeat;
+    background-size: 100%;
+    background-position: center;
 }
 
 .add-checklist {

@@ -10,7 +10,12 @@ const getNewChecklistItem = (todoId, index) => {
     textbox.type = 'text';
     textbox.id = todoId + '-textbox-' + index;
 
-    item.append(checkbox, textbox);
+    const deleteBtn = document.createElement('button');
+    deleteBtn.classList.add('delete');
+    deleteBtn.ariaLabel = 'Delete item';
+    deleteBtn.addEventListener('click', () => item.remove());
+
+    item.append(checkbox, textbox, deleteBtn);
     return item;
 };
 
