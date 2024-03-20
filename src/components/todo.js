@@ -218,8 +218,10 @@ const updateTODOComponent = (projectIndex, todoId) => {
     const dueDate = todoComponent.querySelector('.due-date');
     dueDate.textContent = DateFns.format(todo.getDueDate(), 'd.L.yy');
 
-    const description = todoComponent.querySelector('.description');
-    description.textContent = todo.getDescription();
+    const oldDescription = todoComponent.querySelector('.description');
+    const newDescription = getNewDescriptionComponent(todo.getDescription());
+    newDescription.style.display = window.getComputedStyle(oldDescription).display;
+    todoComponent.replaceChild(newDescription, oldDescription);
 
     const oldChecklistItemsWrapper = todoComponent.querySelector('.checklist-items-wrapper');
 
