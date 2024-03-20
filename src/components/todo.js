@@ -25,7 +25,6 @@ const getClassForPriority = (priority) => {
 
 const setStyleClassForPriority = (todoComponent, priority) => {
     priority = Number(priority);
-    console.log(todoComponent + '\n' + priority);
     todoComponent.classList.remove('hobby');
     todoComponent.classList.remove('chore');
     todoComponent.classList.remove('important');
