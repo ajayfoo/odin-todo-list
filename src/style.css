@@ -487,6 +487,7 @@ body>.container>.todo>.buttons.hide {
 }
 
 body>.container>.todo>.todo-checklist {
+    margin-bottom: 0.5em;
     display: none;
 }
 
