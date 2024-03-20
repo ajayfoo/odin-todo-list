@@ -90,7 +90,7 @@ const setupEventListeners = () => {
 
     todoAddNewChecklistItemBtn.addEventListener('click', () => {
         const id = todoModal.dataset.todoId;
-        const newItemIndex = todoForm.querySelectorAll('.item').length;
+        const newItemIndex = todoChecklistItemsEle.children.length;
         const newChecklistItem = TODOFormComponent.getNewChecklistItem(id, newItemIndex);
         todoChecklistItemsEle.appendChild(newChecklistItem);
     });
@@ -105,6 +105,12 @@ const setupEventListeners = () => {
         };
         TODOHandler.updateTODO(projectSelectEle.value, todoId, updatedTODO);
         updateTODOForm.reset();
+    });
+    updateTodoAddNewChecklistItemBtn.addEventListener('click', () => {
+        const id = updateTODOModal.dataset.todoId;
+        const newItemIndex = updateTodoChecklistItemsEle.children.length;
+        const newChecklistItem = TODOFormComponent.getNewChecklistItem(id, newItemIndex);
+        updateTodoChecklistItemsEle.appendChild(newChecklistItem);
     });
 };
 
