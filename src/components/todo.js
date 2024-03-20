@@ -25,6 +25,7 @@ const getClassForPriority = (priority) => {
 
 const setStyleClassForPriority = (todoComponent, priority) => {
     priority = Number(priority);
+    console.log(todoComponent + '\n' + priority);
     todoComponent.classList.remove('hobby');
     todoComponent.classList.remove('chore');
     todoComponent.classList.remove('important');
@@ -192,6 +193,7 @@ const getNewTODOComponent = (projectIndex, todo) => {
         getClassForPriority(todo.getPriority())
     );
     todoComponent.setAttribute('data-id', todo.getId());
+    setStyleClassForPriority(todoComponent, todo.getPriority());
 
     const header = getNewHeaderComponent(todo, projectIndex, todo.getId());
     const description = getNewDescriptionComponent(todo.getDescription());
