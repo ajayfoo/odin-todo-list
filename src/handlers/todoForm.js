@@ -32,7 +32,7 @@ const resetForm = (form) => {
     form.reset();
     const checklistItemsEle = document.getElementById('create-todo-checklist-items');
     const checklistItemEles = checklistItemsEle.querySelectorAll('.item');
-    for (let i = 1; i < checklistItemEles.length; ++i) {
+    for (let i = 0; i < checklistItemEles.length; ++i) {
         checklistItemEles[i].remove();
     }
 };
