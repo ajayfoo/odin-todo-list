@@ -137,7 +137,7 @@ const getNewChecklistComponent = (projectIndex, todo) => {
         checkbox.id = getChecklistItemIdFor(i);
         checkbox.addEventListener('change', () => {
             const updatedChecklistItem = {
-                done: checklist[i].done,
+                done: checkbox.checked,
                 title: checklist[i].title
             };
             TODOHandler.updateChecklistItem(projectIndex, todo.getId(), i, updatedChecklistItem);
