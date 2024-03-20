@@ -2,6 +2,7 @@ import * as TODOHandler from './todo';
 import * as DateFns from 'date-fns';
 import * as TODOFormComponent from '../components/todoForm';
 
+const todoModal = document.getElementById('create-todo-modal');
 const todoForm = document.querySelector('#create-todo-modal>form');
 const todoNameEle = document.querySelector('#todo-name');
 const projectSelectEle = document.querySelector('#create-todo-project-name');
@@ -27,19 +28,6 @@ const fillUpdateTODOFormWith = (todo, projectIndex) => {
     updateTodoDueDateEle.value = DateFns.format(todo.getDueDate(), 'yyyy-MM-dd');
 };
 
-const setIDForChecklistItems = (todoFormEle, id) => {
-    const checklistItems = todoFormEle.querySelectorAll('.item');
-    console.log('setid', checklistItems.length)
-    for (let i = 0; i < checklistItems.length; ++i) {
-        console.log(checklistItems.item(i));
-        const checkbox = checklistItems.item(i).querySelector('input[type="checkbox"]');
-        const titleTextbox = checklistItems.item(i).querySelector('input[type="text"]');
-        checkbox.id = id + '-checkbox-' + i;
-        titleTextbox.id = id + '-textbox-' + i;
-        console.log(checkbox, titleTextbox)
-    }
-};
-
 const resetForm = (form) => {
     form.reset();
     const checklistItemsEle = document.getElementById('create-todo-checklist-items');
@@ -47,7 +35,7 @@ const resetForm = (form) => {
     for (let i = 1; i < checklistItemEles.length; ++i) {
         checklistItemEles[i].remove();
     }
-}
+};
 
 const checklistAsArray = (checklistItemsEle) => {
     const checklistItems = checklistItemsEle.querySelectorAll('.item');
@@ -73,7 +61,7 @@ const setupEventListeners = () => {
             todoDueDateEle.value,
             checklistAsArray(todoChecklistItemsEle),
         );
-        resetForm(todoForm,);
+        resetForm(todoForm);
     });
 
     todoAddNewChecklistItemBtn.addEventListener('click', () => {
@@ -96,4 +84,14 @@ const setupEventListeners = () => {
     });
 };
 
-export { setupEventListeners, fillUpdateTODOFormWith, setIDForChecklistItems };
+const initiateCreateTODOForm = () => {
+    const todoId = TODOHandler.getNewId();
+    todoModal.setAttribute('data-id', todoId);
+    const checklistItemsEle = document.getElementById('create-todo-checklist-items');
+    checklistItemsEle.append(
+        TODOFormComponent.getNewChecklistItem(todoId, 0)
+    );
+};
+
+
+export { setupEventListeners, fillUpdateTODOFormWith, initiateCreateTODOForm };
