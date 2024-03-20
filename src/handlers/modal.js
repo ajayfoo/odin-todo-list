@@ -28,8 +28,7 @@ const setupEventListeners = () => {
     createTODOBtn.addEventListener('click', () => {
         createTODODialog.showModal();
         const checklistItemsEle = createTODODialog.querySelector('.checklist-items');
-        if (checklistItemsEle.hasChildNodes()) return;
-        TODOFormHandler.initiateCreateTODOForm();
+        TODOFormHandler.setupCreateTODOForm();
     });
     closeCreateTODODialogBtn.addEventListener('click', closeCreateTODODialog);
 

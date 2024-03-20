@@ -51,7 +51,8 @@ const checklistAsArray = (checklistItemsEle) => {
 
 const setupEventListeners = () => {
     todoForm.addEventListener('submit', () => {
-        const id = todoForm.parentElement.dataset.todoId;
+        const id = todoModal.dataset.todoId;
+        console.log('todoForm:' + id);
         TODOHandler.createTODO(
             id,
             todoNameEle.value,
@@ -65,7 +66,7 @@ const setupEventListeners = () => {
     });
 
     todoAddNewChecklistItemBtn.addEventListener('click', () => {
-        const id = todoForm.parentElement.dataset.todoId;
+        const id = todoModal.dataset.todoId;
         const newItemIndex = todoForm.querySelectorAll('.item').length;
         const newChecklistItem = TODOFormComponent.getNewChecklistItem(id, newItemIndex);
         todoChecklistItemsEle.appendChild(newChecklistItem);
@@ -84,14 +85,16 @@ const setupEventListeners = () => {
     });
 };
 
-const initiateCreateTODOForm = () => {
+const setupCreateTODOForm = () => {
     const todoId = TODOHandler.getNewId();
-    todoModal.setAttribute('data-id', todoId);
+    console.log(todoId);
+    todoModal.setAttribute('data-todo-id', todoId);
     const checklistItemsEle = document.getElementById('create-todo-checklist-items');
+    if (checklistItemsEle.hasChildNodes()) return;
     checklistItemsEle.append(
         TODOFormComponent.getNewChecklistItem(todoId, 0)
     );
 };
 
 
-export { setupEventListeners, fillUpdateTODOFormWith, initiateCreateTODOForm };
+export { setupEventListeners, fillUpdateTODOFormWith, setupCreateTODOForm };
