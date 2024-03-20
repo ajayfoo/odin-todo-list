@@ -15,20 +15,18 @@ const createTODO = (id, name, projectIndex, priority, description, dueDate, chec
 };
 
 const updateTODO = (projectIndex, todoId, updatedTODO) => {
-    ProjectHandler.getProject(projectIndex)
-        .getTODOs()[todoId] = TODOModel.getNewTODO(
-            todoId,
-            updatedTODO.name,
-            updatedTODO.priority,
-            updatedTODO.description,
-            updatedTODO.dueDate
-        );
+    const todo = getTODO(projectIndex, todoId);
+    todo.setId(todoId);
+    todo.setName(updatedTODO.name);
+    todo.setPriority(updatedTODO.priority);
+    todo.setDescription(updatedTODO.description);
+    todo.setDueDate(updatedTODO.dueDate);
     TODOComponent.updateTODOComponent(projectIndex, todoId, updatedTODO);
 };
 
 const checkTODO = (projectIndex, todoId, completionStatus) => {
-    ProjectHandler.getProject(projectIndex)
-        .getTODOs()[todoId].isComplete(completionStatus);
+    const todo = getTODO(projectIndex, todoId);
+    todo.isComplete(completionStatus);
     TODOComponent.updateTODOComponentCompletionStatus(projectIndex, todoId);
 };
 
