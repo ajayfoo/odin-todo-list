@@ -18,6 +18,7 @@ const getNewTODO = (id, name, priority, description, dueDate, checklist) => {
     const isComplete = (complete) => completionStatus = complete;
 
     const getChecklist = () => checklist;
+    const setChecklist = (newChecklist) => checklist = newChecklist;
     const addChecklistItem = (done, title) => checklist.add({ done, title });
     const updateChecklistItem = (index, updatedChecklistItem) => {
         checklist[index] = updatedChecklistItem;
@@ -25,7 +26,7 @@ const getNewTODO = (id, name, priority, description, dueDate, checklist) => {
 
     return {
         getId, getName, getPriority, getDescription, getDueDate, isComplete, getChecklist, addChecklistItem, updateChecklistItem,
-        setId, setName, setPriority, setDescription, setDueDate
+        setId, setName, setPriority, setDescription, setDueDate, setChecklist
     };
 };
 

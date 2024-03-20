@@ -102,6 +102,7 @@ const setupEventListeners = () => {
             priority: updateTodoPriorityEle.value,
             description: updateTodoDescriptionEle.value,
             dueDate: updateTodoDueDateEle.value,
+            checklist: getChecklistAsArray(updateTodoChecklistItemsEle),
         };
         TODOHandler.updateTODO(projectSelectEle.value, todoId, updatedTODO);
         updateTODOForm.reset();

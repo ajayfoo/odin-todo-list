@@ -203,27 +203,33 @@ const getNewTODOComponent = (projectIndex, todo) => {
     return todoComponent;
 };
 
-const updateTODOComponent = (projectIndex, todoId, todo) => {
+const updateTODOComponent = (projectIndex, todoId) => {
     const todoContainer = ContainerComponent.getTODOContainerComponent(projectIndex);
     const todoComponent = todoContainer.querySelector(`div[data-id="${todoId}"]`);
+    const todo = TODOHandler.getTODO(projectIndex, todoId);
 
     const priority = todoComponent.querySelector('.priority');
-    priority.textContent = todo.priority;
-    setStyleClassForPriority(todoComponent, todo.priority);
+    priority.textContent = todo.getPriority();
+    setStyleClassForPriority(todoComponent, todo.getPriority());
 
     const name = todoComponent.querySelector('.title');
-    name.textContent = todo.name;
+    name.textContent = todo.getName();
 
     const dueDate = todoComponent.querySelector('.due-date');
-    dueDate.textContent = DateFns.format(todo.dueDate, 'd.L.yy');
+    dueDate.textContent = DateFns.format(todo.getDueDate(), 'd.L.yy');
 
     const description = todoComponent.querySelector('.description');
-    description.textContent = todo.description;
+    description.textContent = todo.getDescription();
+
+    const oldChecklistItemsWrapper = todoComponent.querySelector('.checklist-items-wrapper');
+
+    const newChecklistItems = getNewChecklistComponent(projectIndex, todo)
+        .querySelector('.checklist-items');
+
+    oldChecklistItemsWrapper.replaceChildren(newChecklistItems);
 };
 const updateTODOComponentCompletionStatus = (projectIndex, todoId) => {
     const todoContainer = ContainerComponent.getTODOContainerComponent(projectIndex);
     const todoComponent = todoContainer.querySelector(`div[data-id="${todoId}"]`);
     todoComponent.classList.toggle('complete');
-};
-
-export { getNewTODOComponent, updateTODOComponent, updateTODOComponentCompletionStatus };
+}; export { getNewTODOComponent, updateTODOComponent, updateTODOComponentCompletionStatus };

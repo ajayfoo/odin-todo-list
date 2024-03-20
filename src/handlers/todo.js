@@ -21,7 +21,8 @@ const updateTODO = (projectIndex, todoId, updatedTODO) => {
     todo.setPriority(updatedTODO.priority);
     todo.setDescription(updatedTODO.description);
     todo.setDueDate(updatedTODO.dueDate);
-    TODOComponent.updateTODOComponent(projectIndex, todoId, updatedTODO);
+    todo.setChecklist(updatedTODO.checklist);
+    TODOComponent.updateTODOComponent(projectIndex, todoId);
 };
 
 const checkTODO = (projectIndex, todoId, completionStatus) => {
