@@ -123,9 +123,23 @@
 					<textarea required minlength="3" maxlength="100" name="todo_new_description"
 						id="update-todo-description" rows="3"></textarea>
 				</p>
-				<p class="field todo-checklist">
-					checklist
-				</p>
+				<div class="field todo-checklist">
+					<p>Checklist</p>
+					<header>
+						<span>Done</span>
+						<span>Title</span>
+					</header>
+					<div class="checklist-items-wrapper">
+						<div class="checklist-items" id="update-todo-checklist-items"></div>
+					</div>
+					<button id="update-todo-add-new-checklist-item" class="add-checklist" type="button">
+						<svg xmlns="http://www.w3.org/2000/svg" viewBox="5 5 14 14">
+							<path fill="white"
+								d="M18 12.998h-5v5a1 1 0 0 1-2 0v-5H6a1 1 0 0 1 0-2h5v-5a1 1 0 0 1 2 0v5h5a1 1 0 0 1 0 2">
+							</path>
+						</svg>
+					</button>
+				</div>
 				<p class="field todo-due-date">
 					<label for="update-todo-due-date">Due Date</label>
 					<input required type="date" id="update-todo-due-date">

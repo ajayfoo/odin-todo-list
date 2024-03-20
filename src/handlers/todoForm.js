@@ -18,7 +18,29 @@ const updateTodoNameEle = document.querySelector('#todo-new-name');
 const updateProjectSelectEle = document.querySelector('#update-todo-project-name');
 const updateTodoPriorityEle = document.querySelector('#update-todo-priority');
 const updateTodoDescriptionEle = document.querySelector('#update-todo-description');
+const updateTodoChecklistItemsEle = document.getElementById('update-todo-checklist-items');
 const updateTodoDueDateEle = document.querySelector('#update-todo-due-date');
+const updateTodoAddNewChecklistItemBtn = document.getElementById('update-todo-add-new-checklist-item');
+
+const setUpdateTODOChecklistFromArray = (todoId, arr) => {
+    updateTodoChecklistItemsEle.replaceChildren();
+    for (let i = 0; i < arr.length; ++i) {
+        const checklistItem = TODOFormComponent.getNewChecklistItem(todoId, i);
+
+        const checkbox = checklistItem.querySelector('input[type="checkbox"]');
+        checkbox.checked = arr[i].done;
+
+        const textbox = checklistItem.querySelector('input[type="text"]');
+        textbox.value = arr[i].title;
+
+        updateTodoChecklistItemsEle.appendChild(checklistItem);
+    }
+    if (arr.length === 0) {
+        updateTodoChecklistItemsEle.appendChild(
+            TODOFormComponent.getNewChecklistItem(todoId, 0)
+        );
+    }
+};
 
 const fillUpdateTODOFormWith = (todo, projectIndex) => {
     updateTodoNameEle.value = todo.getName();
@@ -26,6 +48,7 @@ const fillUpdateTODOFormWith = (todo, projectIndex) => {
     updateTodoPriorityEle.value = todo.getPriority();
     updateTodoDescriptionEle.value = todo.getDescription();
     updateTodoDueDateEle.value = DateFns.format(todo.getDueDate(), 'yyyy-MM-dd');
+    setUpdateTODOChecklistFromArray(todo.getId(), todo.getChecklist());
 };
 
 const resetForm = (form) => {
