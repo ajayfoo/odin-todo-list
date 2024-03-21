@@ -6,12 +6,13 @@ import * as ContainerComponent from '../components/container'
 
 const getNewId = () => Math.random().toString(36).slice(2);
 
-const createTODO = (id, name, projectIndex, priority, description, dueDate, checklist) => {
-    const todo = TODOModel.getNewTODO(id, name, priority, description, dueDate, checklist);
+const createTODO = (id, name, projectIndex, priority, description, dueDate, checklist, complete = false) => {
+    const todo = TODOModel.getNewTODO(id, name, priority, description, dueDate, checklist, complete);
     ProjectHandler.addTODOToProject(todo, projectIndex);
     ContainerComponent.addTODOComponentToContainer(projectIndex,
         TODOComponent.getNewTODOComponent(projectIndex, todo)
     );
+    checkTODO(projectIndex, id, complete);
 };
 
 const updateTODO = (projectIndex, todoId, updatedTODO) => {
@@ -27,8 +28,8 @@ const updateTODO = (projectIndex, todoId, updatedTODO) => {
 
 const checkTODO = (projectIndex, todoId, completionStatus) => {
     const todo = getTODO(projectIndex, todoId);
-    todo.isComplete(completionStatus);
-    TODOComponent.updateTODOComponentCompletionStatus(projectIndex, todoId);
+    todo.setComplete(completionStatus)
+    TODOComponent.updateTODOComponentCompletionStatus(projectIndex, todoId, completionStatus);
 };
 
 const deleteTODO = (projectIndex, todoId) => {

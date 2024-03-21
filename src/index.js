@@ -39,7 +39,6 @@ const populateAppWithSavedData = () => {
     const savedProjects = StorageHandler.getSavedProjects();
     for (let i = 0; i < savedProjects.length; ++i) {
         ProjectHandler.createProject(savedProjects[i].name);
-        console.log(savedProjects);
         const TODOs = savedProjects[i].TODOs;
         TODOs.forEach(todo => TodoHandler.createTODO(
             todo.id,
@@ -48,7 +47,8 @@ const populateAppWithSavedData = () => {
             todo.priority,
             todo.description,
             todo.dueDate,
-            todo.checklist
+            todo.checklist,
+            todo.complete
         ));
     }
 };

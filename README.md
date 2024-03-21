@@ -5,4 +5,4 @@
 - [X] View All Projects
 - [X] Mark TO-DO as complete
 - [X] Check list
-- [ ] Add support for local storage
+- [X] Add support for local storage

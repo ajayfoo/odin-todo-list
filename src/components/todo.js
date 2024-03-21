@@ -65,7 +65,7 @@ const getNewHeaderComponent = (todo, projectIndex, todoId) => {
     checkbox.classList.add('check');
     checkbox.addEventListener('click', (event) => {
         event.stopImmediatePropagation();
-        TODOHandler.checkTODO(projectIndex, todoId, checkbox.checked);
+        TODOHandler.checkTODO(projectIndex, todoId, event.target.checked);
     });
 
     const header = document.createElement('header');
@@ -230,8 +230,16 @@ const updateTODOComponent = (projectIndex, todoId) => {
 
     oldChecklistItemsWrapper.replaceChildren(newChecklistItems);
 };
-const updateTODOComponentCompletionStatus = (projectIndex, todoId) => {
+const updateTODOComponentCompletionStatus = (projectIndex, todoId, completionStatus) => {
     const todoContainer = ContainerComponent.getTODOContainerComponent(projectIndex);
     const todoComponent = todoContainer.querySelector(`div[data-id="${todoId}"]`);
-    todoComponent.classList.toggle('complete');
-}; export { getNewTODOComponent, updateTODOComponent, updateTODOComponentCompletionStatus };
+    const checkbox = todoComponent.querySelector('header>input[type="checkbox"]');
+    checkbox.checked = completionStatus;
+    if (completionStatus) {
+        todoComponent.classList.add('complete');
+    } else {
+        todoComponent.classList.remove('complete');
+    }
+};
+
+export { getNewTODOComponent, updateTODOComponent, updateTODOComponentCompletionStatus };

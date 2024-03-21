@@ -5,7 +5,6 @@ const saveAllProjects = () => {
     const projectModels = ProjectHandler.getAllProjectModels();
     const projectPlainObjects = projectModels.map(projectModel => Utils.projectModelToPlainObject(projectModel));
     localStorage.setItem("projects", JSON.stringify(projectPlainObjects));
-    console.log(projectPlainObjects)
 };
 
 const getSavedProjects = () => {
