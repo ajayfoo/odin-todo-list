@@ -44,6 +44,7 @@ const updateChecklistItem = (projectIndex, todoId, checklistItemIndex, updatedCh
     todo.updateChecklistItem(checklistItemIndex, updatedChecklistItem);
 };
 const createDummyTODOs = () => {
+    ProjectHandler.createProject('Default');
     createTODO('abc',
         'Art Work',
         0,

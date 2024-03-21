@@ -63,7 +63,6 @@ const deleteTODOOfProject = (projectIndex, todoId) => {
 };
 
 const getProject = (projectIndex) => ProjectModel.getProject(projectIndex);
+const getAllProjectModels = () => ProjectModel.getAllProjects();
 
-createProject('Default');
-
-export { getProject, createProject, changeCurrentProject, setupEventListeners, unsetProjectSelection, addTODOToProject, deleteTODOOfProject };
+export { getProject, createProject, changeCurrentProject, setupEventListeners, unsetProjectSelection, addTODOToProject, deleteTODOOfProject, getAllProjectModels };

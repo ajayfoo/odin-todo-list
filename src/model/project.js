@@ -17,6 +17,7 @@ const getNewProject = (name) => {
 const getProject = (id) => {
     return projects[id];
 };
+const getAllProjects = () => projects;
 
 const addProject = (project) => {
     projects.push(project);
@@ -24,4 +25,4 @@ const addProject = (project) => {
 
 const getNumOfProjects = () => projects.length;
 
-export { getNewProject, getProject, addProject, getNumOfProjects };
+export { getNewProject, getProject, addProject, getNumOfProjects, getAllProjects };
