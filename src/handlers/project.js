@@ -2,67 +2,85 @@ import * as ContainerComponent from "../components/container";
 import * as ProjectComponent from "../components/project";
 import * as ProjectModel from "../model/project";
 
-const todoCreateProjectSelectElement = document.querySelector("#create-todo-project-name");
+const todoCreateProjectSelectElement = document.querySelector(
+  "#create-todo-project-name",
+);
 const projectSelectEle = document.querySelector("#select-project");
-const updateProjectSelectEle = document.querySelector('#update-todo-project-name');
+const updateProjectSelectEle = document.querySelector(
+  "#update-todo-project-name",
+);
 const allProjectsEle = document.querySelector("#all-projects");
 
-
 const createProject = (name) => {
-    const project = ProjectModel.getNewProject(name);
-    ProjectModel.addProject(project);
-    const projectIndex = ProjectModel.getNumOfProjects() - 1;
+  const project = ProjectModel.getNewProject(name);
+  ProjectModel.addProject(project);
+  const projectIndex = ProjectModel.getNumOfProjects() - 1;
 
-    projectSelectEle.appendChild(
-        ProjectComponent.getNewProjectOptionElement(name, projectIndex)
-    );
-    todoCreateProjectSelectElement.appendChild(
-        ProjectComponent.getNewProjectOptionElement(name, projectIndex)
-    );
-    updateProjectSelectEle.appendChild(
-        ProjectComponent.getNewProjectOptionElement(name, projectIndex)
-    );
+  projectSelectEle.appendChild(
+    ProjectComponent.getNewProjectOptionElement(name, projectIndex),
+  );
+  todoCreateProjectSelectElement.appendChild(
+    ProjectComponent.getNewProjectOptionElement(name, projectIndex),
+  );
+  updateProjectSelectEle.appendChild(
+    ProjectComponent.getNewProjectOptionElement(name, projectIndex),
+  );
 
-    ContainerComponent.addContainerComponent();
+  ContainerComponent.addContainerComponent();
 
-    const projectComponent = ProjectComponent.getNewProjectComponent(
-        project,
-        projectIndex
-    );
-    ProjectComponent.addProjectComponent(projectComponent);
+  const projectComponent = ProjectComponent.getNewProjectComponent(
+    project,
+    projectIndex,
+  );
+  ProjectComponent.addProjectComponent(projectComponent);
 };
 
 const changeCurrentProject = (projectIndex) => {
-    projectSelectEle.selectedIndex = projectIndex;
-    ContainerComponent.changeContainerTo(projectIndex);
+  projectSelectEle.selectedIndex = projectIndex;
+  ContainerComponent.changeContainerTo(projectIndex);
 };
 
 const setupEventListeners = () => {
-    projectSelectEle.addEventListener('change',
-        () => ContainerComponent.changeContainerTo(projectSelectEle.value)
-    );
-    allProjectsEle.addEventListener('click', () => {
-        ProjectComponent.switchToAllProjects();
-    });
+  projectSelectEle.addEventListener("change", () =>
+    ContainerComponent.changeContainerTo(projectSelectEle.value),
+  );
+  allProjectsEle.addEventListener("click", () => {
+    ProjectComponent.switchToAllProjects();
+  });
 };
 
 const unsetProjectSelection = () => {
-    projectSelectEle.selectedIndex = -1;
+  projectSelectEle.selectedIndex = -1;
 };
 
 const addTODOToProject = (todo, projectIndex) => {
-    const project = ProjectModel.getProject(projectIndex);
-    project.addTODO(todo);
-    ProjectComponent.updateProjectComponentTODOCount(projectIndex, project.getNumOfTODOs());
+  const project = ProjectModel.getProject(projectIndex);
+  project.addTODO(todo);
+  ProjectComponent.updateProjectComponentTODOCount(
+    projectIndex,
+    project.getNumOfTODOs(),
+  );
 };
 
 const deleteTODOOfProject = (projectIndex, todoId) => {
-    const project = ProjectModel.getProject(projectIndex);
-    delete project.removeTODO(todoId);
-    ProjectComponent.updateProjectComponentTODOCount(projectIndex, project.getNumOfTODOs());
+  const project = ProjectModel.getProject(projectIndex);
+  delete project.removeTODO(todoId);
+  ProjectComponent.updateProjectComponentTODOCount(
+    projectIndex,
+    project.getNumOfTODOs(),
+  );
 };
 
 const getProject = (projectIndex) => ProjectModel.getProject(projectIndex);
 const getAllProjectModels = () => ProjectModel.getAllProjects();
 
-export { getProject, createProject, changeCurrentProject, setupEventListeners, unsetProjectSelection, addTODOToProject, deleteTODOOfProject, getAllProjectModels };
+export {
+  getProject,
+  createProject,
+  changeCurrentProject,
+  setupEventListeners,
+  unsetProjectSelection,
+  addTODOToProject,
+  deleteTODOOfProject,
+  getAllProjectModels,
+};

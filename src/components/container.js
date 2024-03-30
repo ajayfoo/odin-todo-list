@@ -1,23 +1,27 @@
-const body = document.body;
+const { body } = document;
 const todoContainerComponents = [];
 
 const addContainerComponent = () => {
-    const container = document.createElement('div');
-    container.classList.add('container');
-    todoContainerComponents.push(container);
+  const container = document.createElement("div");
+  container.classList.add("container");
+  todoContainerComponents.push(container);
 };
 
 const addTODOComponentToContainer = (projectIndex, todoComponent) => {
-    todoContainerComponents[projectIndex].appendChild(todoComponent);
-}
-
-const changeContainerTo = (projectIndex) => {
-    const currentContainer = document.querySelector('.container');
-    body.replaceChild(todoContainerComponents[projectIndex], currentContainer);
+  todoContainerComponents[projectIndex].appendChild(todoComponent);
 };
 
-const getTODOContainerComponent = (projectIndex) => {
-    return todoContainerComponents[projectIndex];
-}
+const changeContainerTo = (projectIndex) => {
+  const currentContainer = document.querySelector(".container");
+  body.replaceChild(todoContainerComponents[projectIndex], currentContainer);
+};
 
-export { addContainerComponent, addTODOComponentToContainer, changeContainerTo, getTODOContainerComponent };
+const getTODOContainerComponent = (projectIndex) =>
+  todoContainerComponents[projectIndex];
+
+export {
+  addContainerComponent,
+  addTODOComponentToContainer,
+  changeContainerTo,
+  getTODOContainerComponent,
+};
