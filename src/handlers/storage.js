@@ -7,10 +7,10 @@ const saveAllProjects = () => {
     localStorage.setItem("projects", JSON.stringify(projectPlainObjects));
 };
 
-const getSavedProjects = () => {
-    return JSON.parse(
+const getSavedProjects = () => JSON.parse(
         localStorage.getItem("projects")
     );
-};
 
-export { saveAllProjects, getSavedProjects };
+const savedProjectsExist=()=>localStorage.getItem("projects")!==null && getSavedProjects().length!==0;
+
+export { saveAllProjects, getSavedProjects,savedProjectsExist };

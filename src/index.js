@@ -2,7 +2,6 @@ import './style.css';
 import * as ModalHandler from './handlers/modal';
 import * as ProjectFromHandler from './handlers/projectForm';
 import * as StorageHandler from './handlers/storage';
-import * as Utils from './utils';
 import * as TodoHandler from './handlers/todo';
 import * as TodoFormHandler from './handlers/todoForm';
 import * as ProjectHandler from './handlers/project';
@@ -35,11 +34,11 @@ const storageAvailable = (type) => {
     }
 };
 
-const populateAppWithSavedData = () => {
+const populateAppWithSavedData= () => {
     const savedProjects = StorageHandler.getSavedProjects();
-    for (let i = 0; i < savedProjects.length; ++i) {
+    for (let i = 0; i < savedProjects.length; i+=1) {
         ProjectHandler.createProject(savedProjects[i].name);
-        const TODOs = savedProjects[i].TODOs;
+        const {TODOs} = savedProjects[i];
         TODOs.forEach(todo => TodoHandler.createTODO(
             todo.id,
             todo.name,
@@ -57,12 +56,17 @@ const initiateApp = () => {
     ModalHandler.setupEventListeners();
     ProjectFromHandler.setupEventListeners();
     if (storageAvailable("localStorage")) {
+        if(StorageHandler.savedProjectsExist()){
         populateAppWithSavedData();
+        }
+        else{
+        TodoHandler.createDefaultTODOs();
+        }
         window.addEventListener('beforeunload', () => {
             StorageHandler.saveAllProjects();
         });
     } else {
-        TodoHandler.createDummyTODOs();
+        TodoHandler.createDefaultTODOs();
     }
     TodoFormHandler.setupEventListeners();
     ProjectHandler.setupEventListeners();
