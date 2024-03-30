@@ -1,7 +1,3 @@
-import * as ProjectHandler from "../handlers/project";
-
-const { body } = document;
-
 const projectComponents = [];
 const projectComponentContainer = document.createElement("div");
 projectComponentContainer.classList.add("container");
@@ -13,12 +9,10 @@ const getNewProjectOptionElement = (name, projectIndex) => {
   return projectOption;
 };
 
-const getNewProjectComponent = (project, projectIndex) => {
+const getNewProjectComponent = (project, clickHandler) => {
   const projectComponent = document.createElement("div");
   projectComponent.classList.add("project");
-  projectComponent.addEventListener("click", () => {
-    ProjectHandler.changeCurrentProject(projectIndex);
-  });
+  projectComponent.addEventListener("click", clickHandler);
 
   const name = document.createElement("span");
   name.classList.add("name");
@@ -41,17 +35,12 @@ const updateProjectComponentTODOCount = (projectIndex, newTODOCount) => {
     `${newTODOCount} TO-DO(s)`;
 };
 
-const switchToAllProjects = () => {
-  const currentContainer = document.querySelector(".container");
-  if (currentContainer === projectComponentContainer) return;
-  body.replaceChild(projectComponentContainer, currentContainer);
-  ProjectHandler.unsetProjectSelection();
-};
+const getProjectComponentContainer = () => projectComponentContainer;
 
 export {
   getNewProjectComponent,
   addProjectComponent,
-  switchToAllProjects,
+  getProjectComponentContainer,
   updateProjectComponentTODOCount,
   getNewProjectOptionElement,
 };

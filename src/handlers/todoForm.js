@@ -96,7 +96,9 @@ const setupEventListeners = () => {
       todoPriorityEle.value,
       todoDescriptionEle.value,
       todoDueDateEle.value,
-      getChecklistAsArray(todoChecklistItemsEle)
+      getChecklistAsArray(todoChecklistItemsEle),
+      false,
+      fillUpdateTODOFormWith
     );
     resetForm(todoForm);
   });

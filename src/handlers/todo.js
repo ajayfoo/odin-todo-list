@@ -5,6 +5,35 @@ import * as ContainerComponent from "../components/container";
 
 const getNewId = () => Math.random().toString(36).slice(2);
 
+const getTODO = (projectIndex, todoId) => {
+  const project = ProjectHandler.getProject(projectIndex);
+  return project.getTODOs()[todoId];
+};
+
+const deleteTODO = (projectIndex, todoId) => {
+  ProjectHandler.deleteTODOOfProject(projectIndex, todoId);
+};
+const checkTODO = (projectIndex, todoId, completionStatus) => {
+  const todo = getTODO(projectIndex, todoId);
+  todo.setComplete(completionStatus);
+  TODOComponent.updateTODOComponentCompletionStatus(
+    projectIndex,
+    todoId,
+    completionStatus,
+    getTODO,
+    deleteTODO
+  );
+};
+
+const updateChecklistItem = (
+  projectIndex,
+  todoId,
+  checklistItemIndex,
+  updatedChecklistItem
+) => {
+  const todo = getTODO(projectIndex, todoId);
+  todo.updateChecklistItem(checklistItemIndex, updatedChecklistItem);
+};
 const createTODO = (
   id,
   name,
@@ -13,7 +42,8 @@ const createTODO = (
   description,
   dueDate,
   checklist,
-  complete = false
+  complete,
+  fillUpdateTODOFormWith
 ) => {
   const todo = getNewTODOModel({
     id,
@@ -27,7 +57,15 @@ const createTODO = (
   ProjectHandler.addTODOToProject(todo, projectIndex);
   ContainerComponent.addTODOComponentToContainer(
     projectIndex,
-    TODOComponent.getNewTODOComponent(projectIndex, todo)
+    TODOComponent.getNewTODOComponent(
+      projectIndex,
+      todo,
+      checkTODO,
+      updateChecklistItem,
+      getTODO,
+      deleteTODO,
+      fillUpdateTODOFormWith
+    )
   );
   checkTODO(projectIndex, id, complete);
 };
@@ -40,36 +78,9 @@ const updateTODO = (projectIndex, todoId, updatedTODO) => {
   todo.setDescription(updatedTODO.description);
   todo.setDueDate(updatedTODO.dueDate);
   todo.setChecklist(updatedTODO.checklist);
-  TODOComponent.updateTODOComponent(projectIndex, todoId);
+  TODOComponent.updateTODOComponent(projectIndex, todoId, getTODO);
 };
 
-const checkTODO = (projectIndex, todoId, completionStatus) => {
-  const todo = getTODO(projectIndex, todoId);
-  todo.setComplete(completionStatus);
-  TODOComponent.updateTODOComponentCompletionStatus(
-    projectIndex,
-    todoId,
-    completionStatus
-  );
-};
-
-const deleteTODO = (projectIndex, todoId) => {
-  ProjectHandler.deleteTODOOfProject(projectIndex, todoId);
-};
-
-const getTODO = (projectIndex, todoId) => {
-  const project = ProjectHandler.getProject(projectIndex);
-  return project.getTODOs()[todoId];
-};
-const updateChecklistItem = (
-  projectIndex,
-  todoId,
-  checklistItemIndex,
-  updatedChecklistItem
-) => {
-  const todo = getTODO(projectIndex, todoId);
-  todo.updateChecklistItem(checklistItemIndex, updatedChecklistItem);
-};
 const createDefaultTODOs = () => {
   ProjectHandler.createProject("Default");
   createTODO(

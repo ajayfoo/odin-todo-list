@@ -48,7 +48,8 @@ const populateAppWithSavedData = () => {
         todo.description,
         todo.dueDate,
         todo.checklist,
-        todo.complete
+        todo.complete,
+        TodoFormHandler.fillUpdateTODOFormWith
       )
     );
   }

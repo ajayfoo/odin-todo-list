@@ -1,6 +1,4 @@
 import * as DateFns from "date-fns";
-import * as TODOHandler from "../handlers/todo";
-import * as TODOForm from "../handlers/todoForm";
 import * as ContainerComponent from "./container";
 
 const updateTODOModal = document.querySelector("#update-todo-modal");
@@ -49,7 +47,7 @@ const setStyleClassForPriority = (todoComponent, priority) => {
   todoComponent.classList.add(styleClass);
 };
 
-const getNewHeaderComponent = (todo, projectIndex, todoId) => {
+const getNewHeaderComponent = (todo, projectIndex, checkTODO) => {
   const priority = document.createElement("span");
   priority.classList.add("priority");
   priority.textContent = todo.getPriority();
@@ -71,7 +69,7 @@ const getNewHeaderComponent = (todo, projectIndex, todoId) => {
   checkbox.classList.add("check");
   checkbox.addEventListener("click", (event) => {
     event.stopImmediatePropagation();
-    TODOHandler.checkTODO(projectIndex, todoId, event.target.checked);
+    checkTODO(projectIndex, todo.getId(), event.target.checked);
   });
 
   const header = document.createElement("header");
@@ -124,7 +122,7 @@ const getNewDescriptionComponent = (descriptionTxt) => {
   return description;
 };
 
-const getNewChecklistComponent = (projectIndex, todo) => {
+const getNewChecklistComponent = (projectIndex, todo, updateChecklistItem) => {
   const checklistEle = document.createElement("div");
   checklistEle.classList.add("todo-checklist");
   const checklistItemsWrapper = document.createElement("div");
@@ -132,7 +130,7 @@ const getNewChecklistComponent = (projectIndex, todo) => {
   const checklistItemsEle = document.createElement("div");
   checklistItemsEle.classList.add("checklist-items");
   const checklist = todo.getChecklist();
-  const itemIDPrefix = TODOHandler.getNewId();
+  const itemIDPrefix = todo.getId();
   const getChecklistItemIdFor = (i) => `${itemIDPrefix}-checklist-item-${i}`;
   for (let i = 0; i < checklist.length; i += 1) {
     const itemEle = document.createElement("div");
@@ -146,12 +144,7 @@ const getNewChecklistComponent = (projectIndex, todo) => {
         done: checkbox.checked,
         title: checklist[i].title,
       };
-      TODOHandler.updateChecklistItem(
-        projectIndex,
-        todo.getId(),
-        i,
-        updatedChecklistItem
-      );
+      updateChecklistItem(projectIndex, todo.getId(), i, updatedChecklistItem);
     });
 
     const title = document.createElement("label");
@@ -169,7 +162,13 @@ const getNewChecklistComponent = (projectIndex, todo) => {
   return checklistEle;
 };
 
-const getNewButtonsComponent = (projectIndex, todoId) => {
+const getNewButtonsComponent = (
+  projectIndex,
+  todoId,
+  getTODO,
+  deleteTODO,
+  fillUpdateTODOFormWith
+) => {
   const buttons = document.createElement("div");
   buttons.classList.add("buttons");
   buttons.classList.add("hide");
@@ -180,8 +179,8 @@ const getNewButtonsComponent = (projectIndex, todoId) => {
   editBtn.addEventListener("click", () => {
     updateTODOModal.setAttribute("data-todo-id", todoId);
     updateTODOModal.showModal();
-    const todo = TODOHandler.getTODO(projectIndex, todoId);
-    TODOForm.fillUpdateTODOFormWith(todo);
+    const todo = getTODO(projectIndex, todoId);
+    fillUpdateTODOFormWith(todo, projectIndex);
   });
 
   const deleteBtn = document.createElement("button");
@@ -189,34 +188,52 @@ const getNewButtonsComponent = (projectIndex, todoId) => {
   deleteBtn.textContent = "Delete";
   deleteBtn.addEventListener("click", () => {
     buttons.parentElement.remove();
-    TODOHandler.deleteTODO(projectIndex, todoId);
+    deleteTODO(projectIndex, todoId);
   });
 
   buttons.append(editBtn, deleteBtn);
   return buttons;
 };
 
-const getNewTODOComponent = (projectIndex, todo) => {
+const getNewTODOComponent = (
+  projectIndex,
+  todo,
+  checkTODO,
+  updateChecklistItem,
+  getTODO,
+  deleteTODO,
+  fillUpdateTODOFormWith
+) => {
   const todoComponent = document.createElement("div");
   todoComponent.classList.add("todo");
   todoComponent.classList.add(getClassForPriority(todo.getPriority()));
   todoComponent.setAttribute("data-id", todo.getId());
   setStyleClassForPriority(todoComponent, todo.getPriority());
 
-  const header = getNewHeaderComponent(todo, projectIndex, todo.getId());
+  const header = getNewHeaderComponent(todo, projectIndex, checkTODO);
   const description = getNewDescriptionComponent(todo.getDescription());
-  const buttons = getNewButtonsComponent(projectIndex, todo.getId());
-  const checklist = getNewChecklistComponent(projectIndex, todo);
+  const buttons = getNewButtonsComponent(
+    projectIndex,
+    todo.getId(),
+    getTODO,
+    deleteTODO,
+    fillUpdateTODOFormWith
+  );
+  const checklist = getNewChecklistComponent(
+    projectIndex,
+    todo,
+    updateChecklistItem
+  );
 
   todoComponent.append(header, description, checklist, buttons);
   return todoComponent;
 };
 
-const updateTODOComponent = (projectIndex, todoId) => {
+const updateTODOComponent = (projectIndex, todoId, getTODO) => {
   const todoContainer =
     ContainerComponent.getTODOContainerComponent(projectIndex);
   const todoComponent = todoContainer.querySelector(`div[data-id="${todoId}"]`);
-  const todo = TODOHandler.getTODO(projectIndex, todoId);
+  const todo = getTODO(projectIndex, todoId);
 
   const priority = todoComponent.querySelector(".priority");
   priority.textContent = todo.getPriority();
