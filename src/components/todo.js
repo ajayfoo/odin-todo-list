@@ -66,6 +66,7 @@ const getNewHeaderComponent = (todo, projectIndex, checkTODO) => {
 
   const checkbox = document.createElement("input");
   checkbox.type = "checkbox";
+  checkbox.id = `${todo.getId()}-checkbox`;
   checkbox.classList.add("check");
   checkbox.addEventListener("click", (event) => {
     event.stopImmediatePropagation();
@@ -195,15 +196,14 @@ const getNewButtonsComponent = (
   return buttons;
 };
 
-const getNewTODOComponent = (
-  projectIndex,
-  todo,
-  checkTODO,
-  updateChecklistItem,
-  getTODO,
-  deleteTODO,
-  fillUpdateTODOFormWith
-) => {
+const getNewTODOComponent = (projectIndex, todo, eventListeners) => {
+  const {
+    checkTODO,
+    updateChecklistItem,
+    getTODO,
+    deleteTODO,
+    fillUpdateTODOFormWith,
+  } = eventListeners;
   const todoComponent = document.createElement("div");
   todoComponent.classList.add("todo");
   todoComponent.classList.add(getClassForPriority(todo.getPriority()));
@@ -229,7 +229,12 @@ const getNewTODOComponent = (
   return todoComponent;
 };
 
-const updateTODOComponent = (projectIndex, todoId, getTODO) => {
+const updateTODOComponent = (
+  projectIndex,
+  todoId,
+  getTODO,
+  updateChecklistItem
+) => {
   const todoContainer =
     ContainerComponent.getTODOContainerComponent(projectIndex);
   const todoComponent = todoContainer.querySelector(`div[data-id="${todoId}"]`);
@@ -257,7 +262,8 @@ const updateTODOComponent = (projectIndex, todoId, getTODO) => {
 
   const newChecklistItems = getNewChecklistComponent(
     projectIndex,
-    todo
+    todo,
+    updateChecklistItem
   ).querySelector(".checklist-items");
 
   oldChecklistItemsWrapper.replaceChildren(newChecklistItems);

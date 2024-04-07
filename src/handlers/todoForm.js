@@ -119,7 +119,7 @@ const setupEventListeners = () => {
       dueDate: updateTodoDueDateEle.value,
       checklist: getChecklistAsArray(updateTodoChecklistItemsEle),
     };
-    TODOHandler.updateTODO(projectSelectEle.value, todoId, updatedTODO);
+    TODOHandler.updateTODO(updateProjectSelectEle.value, todoId, updatedTODO);
     updateTODOForm.reset();
   });
   updateTodoAddNewChecklistItemBtn.addEventListener("click", () => {

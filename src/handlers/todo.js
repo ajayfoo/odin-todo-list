@@ -55,17 +55,16 @@ const createTODO = (
     complete,
   });
   ProjectHandler.addTODOToProject(todo, projectIndex);
+  const eventListeners = {
+    checkTODO,
+    updateChecklistItem,
+    getTODO,
+    deleteTODO,
+    fillUpdateTODOFormWith,
+  };
   ContainerComponent.addTODOComponentToContainer(
     projectIndex,
-    TODOComponent.getNewTODOComponent(
-      projectIndex,
-      todo,
-      checkTODO,
-      updateChecklistItem,
-      getTODO,
-      deleteTODO,
-      fillUpdateTODOFormWith
-    )
+    TODOComponent.getNewTODOComponent(projectIndex, todo, eventListeners)
   );
   checkTODO(projectIndex, id, complete);
 };
@@ -78,7 +77,12 @@ const updateTODO = (projectIndex, todoId, updatedTODO) => {
   todo.setDescription(updatedTODO.description);
   todo.setDueDate(updatedTODO.dueDate);
   todo.setChecklist(updatedTODO.checklist);
-  TODOComponent.updateTODOComponent(projectIndex, todoId, getTODO);
+  TODOComponent.updateTODOComponent(
+    projectIndex,
+    todoId,
+    getTODO,
+    updateChecklistItem
+  );
 };
 
 const createDefaultTODOs = () => {
